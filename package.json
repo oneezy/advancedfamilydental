@@ -11,8 +11,9 @@
 	},
 	"devDependencies": {
 		"@iconify-json/bi": "^1.1.23",
+		"@iconify-json/fluent": "^1.1.56",
 		"@iconify-json/ic": "^1.1.17",
-		"@iconify-json/material-symbols": "^1.1.81",
+		"@iconify-json/material-symbols": "^1.1.82",
 		"@iconify-json/ph": "^1.1.13",
 		"@iconify-json/solar": "^1.1.9",
 		"@sveltejs/adapter-auto": "^3.2.1",
@@ -21,8 +22,8 @@
 		"@tailwindcss/postcss": "4.0.0-alpha.15",
 		"@tailwindcss/vite": "4.0.0-alpha.15",
 		"autoprefixer": "^10.4.19",
-		"prettier": "^3.3.0",
-		"prettier-plugin-svelte": "^3.2.3",
+		"prettier": "^3.3.1",
+		"prettier-plugin-svelte": "^3.2.4",
 		"prettier-plugin-tailwindcss": "^0.5.14",
 		"svelte": "next",
 		"svelte-5-ui-lib": "^0.4.13",
@@ -34,6 +35,6 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"@oneezy/ui": "next"
+		"@oneezy/ui": "2.0.0-next.37"
 	}
 }

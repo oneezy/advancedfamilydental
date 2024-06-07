@@ -9,27 +9,12 @@ importers:
   .:
     dependencies:
       '@oneezy/ui':
-        specifier: 2.0.0-next.37
-        version: 2.0.0-next.37(postcss@8.4.38)(svelte@5.0.0-next.151)(tailwindcss@4.0.0-alpha.15)
+        specifier: next
+        version: 2.0.0-next.41(postcss@8.4.38)(svelte@5.0.0-next.151)(tailwindcss@4.0.0-alpha.15)
     devDependencies:
-      '@iconify-json/bi':
-        specifier: ^1.1.23
-        version: 1.1.23
       '@iconify-json/fluent':
         specifier: ^1.1.56
         version: 1.1.56
-      '@iconify-json/ic':
-        specifier: ^1.1.17
-        version: 1.1.17
-      '@iconify-json/material-symbols':
-        specifier: ^1.1.82
-        version: 1.1.82
-      '@iconify-json/ph':
-        specifier: ^1.1.13
-        version: 1.1.13
-      '@iconify-json/solar':
-        specifier: ^1.1.9
-        version: 1.1.9
       '@sveltejs/adapter-auto':
         specifier: ^3.2.1
         version: 3.2.1(@sveltejs/kit@2.5.10(@sveltejs/vite-plugin-svelte@4.0.0-next.3(svelte@5.0.0-next.151)(vite@5.2.12(lightningcss@1.25.1)))(svelte@5.0.0-next.151)(vite@5.2.12(lightningcss@1.25.1)))
@@ -251,14 +236,11 @@ packages:
   '@iconify-json/fluent@1.1.56':
     resolution: {integrity: sha512-RkelgY3wU198JI4mwGHMWTjPylWpNkOvyA3LamVJYZDsBVhndvTIThFeOGswfV3HeD95wCOkmXWupCpIxIAo7A==}
 
-  '@iconify-json/ic@1.1.17':
-    resolution: {integrity: sha512-EvAjZzVESmN36zlyefylePUNaU2BQ3eRKVZ6KQSQ2bG01ppoZaiFZRri74VTyvp5Mlv2yn68ux1fgCoT+etGmA==}
+  '@iconify-json/hugeicons@1.1.0':
+    resolution: {integrity: sha512-MzzShBJQsOB92kzPMBe2dI35m0BrR7Z7yEQ0Al84ULQ46PRAAu+RBkqmTzqY+T2uBB1PeGe8sPs+8lGRXClGjg==}
 
   '@iconify-json/material-symbols@1.1.82':
     resolution: {integrity: sha512-E67LgMFiAbEVF7rE38ulZU6NeXcPvayFF4hUUqt3g33tWrLsDNqEFTSsPt03l34rH5uGGtHIakTqtBlZ+/hRkw==}
-
-  '@iconify-json/ph@1.1.13':
-    resolution: {integrity: sha512-xtM4JJ63HCKj09WRqrBswXiHrpliBlqboWSZH8odcmqYXbvIFceU9/Til4V+MQr6+MoUC+KB72cxhky2+A6r/g==}
 
   '@iconify-json/solar@1.1.9':
     resolution: {integrity: sha512-BcWzZqA02BiQduYizqU/J4v4RNs0MkjZUGpMbejpozH8YQSt3+S/LfV6zfVRonx/2DhXTVSqiLa1abDRAZtojQ==}
@@ -303,8 +285,8 @@ packages:
     resolution: {integrity: sha512-oGB+UxlgWcgQkgwo8GcEGwemoTFt3FIO9ababBmaGwXIoBKZ+GTy0pP185beGg7Llih/NSHSV2XAs1lnznocSg==}
     engines: {node: '>= 8'}
 
-  '@oneezy/ui@2.0.0-next.37':
-    resolution: {integrity: sha512-tY/tdfjJR+wIsxt/Gni4vM9OZU9pMUrmIGuJ4KKrYclBFJ3lk+rt80d6Dy4RwKi8QpQPLK+8CPPuCBEbPl6ntQ==}
+  '@oneezy/ui@2.0.0-next.41':
+    resolution: {integrity: sha512-HuDqls7pWAoTREjKb3e3HiFk4pWkVmz0tqSwYJrQI+OgkEeiMS8a6vv9mUCHnI5pHMzaPbngJIW2W+q1kz5vmw==}
     peerDependencies:
       svelte: ^5.0.0-next.136
       tailwindcss: ^4.0.0-alpha.15
@@ -1453,15 +1435,11 @@ snapshots:
     dependencies:
       '@iconify/types': 2.0.0
 
-  '@iconify-json/ic@1.1.17':
+  '@iconify-json/hugeicons@1.1.0':
     dependencies:
       '@iconify/types': 2.0.0
 
   '@iconify-json/material-symbols@1.1.82':
-    dependencies:
-      '@iconify/types': 2.0.0
-
-  '@iconify-json/ph@1.1.13':
     dependencies:
       '@iconify/types': 2.0.0
 
@@ -1519,8 +1497,13 @@ snapshots:
       '@nodelib/fs.scandir': 2.1.5
       fastq: 1.17.1
 
-  '@oneezy/ui@2.0.0-next.37(postcss@8.4.38)(svelte@5.0.0-next.151)(tailwindcss@4.0.0-alpha.15)':
+  '@oneezy/ui@2.0.0-next.41(postcss@8.4.38)(svelte@5.0.0-next.151)(tailwindcss@4.0.0-alpha.15)':
     dependencies:
+      '@iconify-json/bi': 1.1.23
+      '@iconify-json/fluent': 1.1.56
+      '@iconify-json/hugeicons': 1.1.0
+      '@iconify-json/material-symbols': 1.1.82
+      '@iconify-json/solar': 1.1.9
       daisyui: 4.12.2(postcss@8.4.38)
       mode-watcher: 0.3.0(svelte@5.0.0-next.151)
       runed: 0.10.0(svelte@5.0.0-next.151)

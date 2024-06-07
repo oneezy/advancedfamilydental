@@ -10,12 +10,7 @@
 		"clean": "git clean -fXd"
 	},
 	"devDependencies": {
-		"@iconify-json/bi": "^1.1.23",
 		"@iconify-json/fluent": "^1.1.56",
-		"@iconify-json/ic": "^1.1.17",
-		"@iconify-json/material-symbols": "^1.1.82",
-		"@iconify-json/ph": "^1.1.13",
-		"@iconify-json/solar": "^1.1.9",
 		"@sveltejs/adapter-auto": "^3.2.1",
 		"@sveltejs/kit": "^2.5.10",
 		"@sveltejs/vite-plugin-svelte": "next",
@@ -35,6 +30,6 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"@oneezy/ui": "2.0.0-next.37"
+		"@oneezy/ui": "next"
 	}
 }

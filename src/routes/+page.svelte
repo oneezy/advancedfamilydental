@@ -1,67 +1,126 @@
 <script>
-	import { Section, Container, Content, Image, Effect, Divider, Title, Button, Logo } from '@oneezy/ui';
-  import IconPhome from '~icons/material-symbols/call-sharp';
-  import IconMap from '~icons/material-symbols/map-sharp';
+	import {
+		Hero,
+		Section,
+		Container,
+		Content,
+		Divider,
+		Card,
+		Map,
+		Title,
+		Accordion,
+		AccordionItem
+	} from '@oneezy/ui';
+	let { children, ...props } = $props();
 
-  let { data } = $props();
-  
-	let images = [
-		'/images/photo-1.jpg',
-    '/images/photo-2.jpg',
-    '/images/photo-3.jpg',
-    '/images/photo-4.jpg',
-    '/images/photo-5.jpg',
-    '/images/photo-6.jpg',
-    '/images/photo-7.jpg',
-    '/images/photo-8.jpeg',
-    '/images/photo-9.jpg',
-    '/images/photo-10.jpg',
-	];
+	let classes = 'card grid items-center justify-start flex-1';
+	let width = '150%';
+	let height = '240px';
 </script>
 
-<!-- children
-:::::::::::::::::::::::::::::::: -->
+<Hero id="hero" />
+
 <Section
-	class="relative grid grid-rows-[1fr_auto] items-end overflow-hidden min-h-[80dvh]"
+	class="my-20 grid grid-cols-2 items-center justify-center gap-4 p-4 md:flex md:flex-row md:gap-10 "
 >
-<!-- <Image bg cover src="https://www.ronaldcitranodds.com/custom/images/banner-1.jpg"> -->
-	<Image bg cover slideshow src="{images}">
-		<Effect
-			gradient="var(--color-primary), transparent, transparent, var(--color-secondary)"
-			linear="170deg"
-			repeat
-		/>
-	</Image>
-
-	<div class="flex flex-col items-center justify-center">
-    <img class="max-w-xl" src="/logo-stacked.svg" alt="Advanced Family Dental Care" />
-
-		<Title
-			title="Advanced Family Dental Care"
-			tagline="Our business is smiles."
-			class="sr-only text-center text-white text-4xl"
-		/>
-
-		<div class="flex flex-col md:flex-row gap-4">
-			<Button class="min-w-[340px]" href="tel:+14097684095" lg neutral target="_blank"><IconPhome class="mr-2 text-4xl" />Schedule Appointment</Button>
-			<Button class="min-w-[340px]" href="https://maps.app.goo.gl/g3gU6jSmCNhe84xo9" lg glass><IconMap class="mr-2 text-4xl" />Get Directions</Button>
-		</div>
-	</div>
-
-	<Divider height="240px" fill="fill-white" width="150%" flip={true} />
+	<Card total="4" />
 </Section>
 
+<Container id="team" class="grid items-center justify-center gap-20">
+	<Title>Our Team</Title>
+	<div
+		class="flex flex-col flex-col-reverse md:flex-row md:gap-10 md:even:flex-row-reverse"
+	>
+		<Content text class={classes} />
+		<Content img class={classes} />
+	</div>
+	<div
+		class="flex flex-col flex-col-reverse md:flex-row md:gap-10 md:even:flex-row-reverse"
+	>
+		<Content text class={classes} />
+		<Content img class={classes} />
+	</div>
+	<div
+		class="flex flex-col flex-col-reverse md:flex-row md:gap-10 md:even:flex-row-reverse"
+	>
+		<Content text class={classes} />
+		<Content img class={classes} />
+	</div>
+</Container>
 
-<!-- 
-{#each data.pageData as { slug, title, tagline, content }}
-  <Section id={slug} class="" state="normal">
-    <Divider position="top" shape="arrow" invert={true} />
+<Divider id="services" {width} {height}>
+	<Title>Our Services</Title>
+	<Container>
+		<div
+			class="grid grid-cols-1 place-items-center items-center justify-center gap-10 p-4 pb-20 md:grid-cols-3"
+		>
+			<Card total="9" />
+		</div>
+	</Container>
+</Divider>
 
-    <Container>
-      <Title {title} {tagline} />
-      <Content>{@html content}</Content>
-    </Container>
+<Section>
+	<Title>Testimonials</Title>
+	<div
+		class="my-20 grid grid-cols-2 items-center justify-center gap-4 p-4 md:flex md:flex-row md:gap-10"
+	>
+		<!-- <Card total="3" /> -->
+	</div>
+</Section>
 
-    <Divider position="bottom" shape="arrow" invert={false} />
-  </Section>
-{/each} -->
+<Section
+	class="relative min-h-[80vh]"
+	fill="fill-neutral-50-800 bg-neutral-50-800"
+>
+	<Divider
+		fill="fill-neutral-50-800"
+		flip
+		invert
+		reverse
+		height="240px"
+		width="150%"
+		top
+	/>
+	<Title>Contact Us</Title>
+	<Map
+		address="5385 Laurel, Beaumont, TX, 77707"
+		zoom={12}
+		class="absolute inset-0 -z-10"
+	/>
+	<Divider
+		class="z-20"
+		flip
+		fill="fill-neutral-50-800"
+		height="240px"
+		width="150%"
+		bottom
+	/>
+</Section>
+
+<Section>
+	<Title>FAQ</Title>
+
+	<Container>
+		<Accordion>
+			<AccordionItem id="1">
+				{#snippet control()}Question{/snippet}
+				{#snippet panel()}{lorem}{/snippet}
+			</AccordionItem>
+			<hr class="hr" />
+			<AccordionItem id="2">
+				{#snippet control()}Accordion 2{/snippet}
+				{#snippet panel()}{lorem}{/snippet}
+			</AccordionItem>
+			<hr class="hr" />
+			<AccordionItem id="3">
+				{#snippet control()}Accordion 3 (disabled){/snippet}
+				{#snippet panel()}{lorem}{/snippet}
+			</AccordionItem>
+			<hr class="hr" />
+			<AccordionItem id="4">
+				{#snippet control()}Accordion 4{/snippet}
+				{#snippet panel()}{lorem}{/snippet}
+			</AccordionItem>
+		</Accordion>
+	</Container>
+</Section>

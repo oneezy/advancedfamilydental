@@ -1,31 +1,26 @@
 <script>
-	import '../app.css';
 	import {
 		Template,
+		Divider,
 		Header,
 		Logo,
 		Nav,
-		Button,
-		Footer,
-		Copyright,
-		Divider,
 		ThemeDark,
-		ThemeColor
+		Footer,
+		Copyright
 	} from '@oneezy/ui';
-	let { children } = $props();
 
-	import IconFB from '~icons/ic/baseline-facebook';
-	import IconGoogle from '~icons/bi/google'
+	import '../app.css';
+	let { children, ...props } = $props();
 </script>
 
-<Template >
+<Template>
 	{#snippet header()}
-<!-- 	
-		<Header class="h-0" containerClass="preset-glass">
-			{#snippet left()}<Logo src="/images/logo.svg" />{/snippet}
+		<Header>
+			{#snippet left()}<Logo />{/snippet}
 			{#snippet center()}<Nav />{/snippet}
 			{#snippet right()}<ThemeDark />{/snippet}
-		</Header> -->
+		</Header>
 	{/snippet}
 
 	{#snippet main()}
@@ -33,20 +28,11 @@
 	{/snippet}
 
 	{#snippet footer()}
-<!-- 	
-		<Divider width="200%" fill="primary" /> -->
-		<Footer class="p-4 bg-white">
-			{#snippet left()}{/snippet}
-			{#snippet center()}
-			<section class="flex flex-col mb-10">
-				<div class="flex items-center justify-center gap-2">
-					<Button href="https://www.facebook.com/ronaldcitranoDDS" target="_blank" ghost icon class="text-4xl"><IconFB /></Button>
-					<Button href="https://maps.app.goo.gl/g3gU6jSmCNhe84xo9" target="_blank" ghost icon class="text-3xl"><IconGoogle /></Button>
-				</div>
-				<Copyright>Advanced Family Dental Care. All Rights Reserved.</Copyright>
-			</section>
-			{/snippet}
-			{#snippet right()}{/snippet}
+		<Divider width="150%" fill="fill-primary" />
+		<Footer class="bg-primary text-primary-50-50 p-4">
+			{#snippet left()}<Logo />{/snippet}
+			{#snippet center()}Social{/snippet}
+			{#snippet right()}<Copyright>Oneezy</Copyright>{/snippet}
 		</Footer>
 	{/snippet}
 </Template>

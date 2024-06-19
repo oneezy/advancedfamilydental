@@ -56,9 +56,6 @@
 	import SmileIcon from '~icons/streamline/chat-bubble-oval-smiley-2-solid';
 	import EmailIcon from '~icons/ic/round-mail';
 
-	// let classIcons = 'text-primary-500-500 text-6xl p-2 contrast-70';
-	// let classIcons = 'text-primary-600-600 text-6xl p-2';
-	// let classIcons = 'text-secondary-500-500 text-6xl p-2';
 	let classIcons = 'text-secondary text-6xl p-2';
 </script>
 
@@ -98,7 +95,7 @@
 		button2="Get Directions"
 		button2Link="#contact"
 		src="/images/office.jpg"
-		gradient="var(--color-primary), transparent, var(--color-secondary)"
+		heroGradient = "white, transparent, transparent, transparent, #75C8C5"
 		divider
 		{dividerFill}
 		{dividerWidth}

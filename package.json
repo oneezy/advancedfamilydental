@@ -10,8 +10,14 @@
 		"clean": "git clean -fXd"
 	},
 	"devDependencies": {
+		"@iconify-json/ci": "^1.1.13",
+		"@iconify-json/fa6-solid": "^1.1.21",
 		"@iconify-json/fluent": "^1.1.57",
+		"@iconify-json/ic": "^1.1.17",
+		"@iconify-json/material-symbols": "^1.1.82",
+		"@iconify-json/ph": "^1.1.13",
 		"@iconify-json/solar": "^1.1.9",
+		"@iconify-json/streamline": "^1.1.8",
 		"@sveltejs/adapter-auto": "^3.2.2",
 		"@sveltejs/kit": "^2.5.17",
 		"@sveltejs/vite-plugin-svelte": "next",
@@ -31,6 +37,15 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"@oneezy/ui": "next"
+		"@oneezy/ui": "next",
+    "@iconify-json/bi": "^1.1.23",
+    "@iconify-json/fluent": "^1.1.57",
+    "@iconify-json/hugeicons": "^1.1.0",
+    "@iconify-json/material-symbols": "^1.1.82",
+    "@iconify-json/solar": "^1.1.9",
+    "daisyui": "^4.12.2",
+    "mode-watcher": "^0.3.1",
+    "runed": "^0.10.0",
+    "unplugin-icons": "^0.19.0"
 	}
 }

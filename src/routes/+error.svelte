@@ -1,7 +1,5 @@
 <script>
-	import { Section, Container, Content, Title } from '@oneezy/ui'
-
-	let { data } = $props()
+	import { Section, Container, Content, Title } from '@oneezy/ui';
 </script>
 
 <Section id="error" class="bg-white " state="normal">

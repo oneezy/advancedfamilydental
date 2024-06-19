@@ -1,24 +1,27 @@
-@import "tailwindcss";
-@import "@oneezy/ui/ui.css";
+@import 'tailwindcss';
+@import '@oneezy/ui';
 
+/* Add any custom CSS here */
 [data-theme] {
-  /* colors */
-  --theme-color: var(--color-slate-500);
-  --theme-color-neutral: var(--color-slate-500);
-  --theme-color-primary: rgb(64, 158, 185);
-  --theme-color-secondary: rgb(0, 98, 128);
-  --theme-color-accent: rgb(0, 255, 200);
+	/* colors */
+	--theme-color: var(--color-slate-500);
+	--theme-color-neutral: var(--color-slate-500);
+	/* --theme-color-primary: rgb(64, 158, 185); */
+	/* --theme-color-secondary: rgb(0, 98, 128); */
+	--theme-color-primary: #00fff7;
+	--theme-color-secondary: #00c4de;
+	--theme-color-accent: #ed1c24;
 
-  /* fonts */
-  --theme-font: "Comic Sans MS";
-  --theme-font-base: var(--font-family-sans);
-  --theme-font-headings: var(--font-family-sans);
+	/* fonts */
+	--theme-font: 'Comic Sans MS';
+	--theme-font-base: var(--font-family-sans);
+	--theme-font-headings: var(--font-family-sans);
 
-  /* font size */
-  --theme-scale: 1;
+	/* font size */
+	--theme-scale: 1;
 
-  /* radius */
-  --theme-corners: 9999px;
-  --theme-corners-box: 1.5rem;
-  --theme-corners-button: 9999px;
+	/* radius */
+	--theme-corners: 9999px;
+	--theme-corners-box: var(--radius-2xl);
+	--theme-corners-button: 9999px;
 }

@@ -46,13 +46,12 @@
 	let homePage = data.pageData.find((page) => page.pageSlug === 'home');
 	let otherPages = data.pageData.filter((page) => page.pageSlug !== 'home');
 
-	import StarIcon from '~icons/material-symbols/kid-star';
-	import ReviewIcon from '~icons/material-symbols/android-messages';
 	import PhoneIcon from '~icons/solar/phone-bold';
 	import MapIcon from '~icons/solar/map-point-bold';
+	import StarIcon from '~icons/material-symbols/kid-star';
+	import ReviewIcon from '~icons/material-symbols/android-messages';
 	import DoctorIcon from '~icons/fa6-solid/user-doctor';
 	import OfficeIcon from '~icons/ph/building-office-fill';
-	import CalendarIcon from '~icons/material-symbols/event-rounded';
 	import SmileIcon from '~icons/streamline/chat-bubble-oval-smiley-2-solid';
 	import EmailIcon from '~icons/ic/round-mail';
 
@@ -95,7 +94,7 @@
 		button2="Get Directions"
 		button2Link="#contact"
 		src="/images/office.jpg"
-		heroGradient = "white, transparent, transparent, transparent, #75C8C5"
+		heroGradient="white, transparent, transparent, transparent, #75C8C5"
 		divider
 		{dividerFill}
 		{dividerWidth}
@@ -147,13 +146,17 @@
 	>
 		{#if page.pageSlug === 'about'}
 			<!-- Team -->
+			<!-- 			 
+			{#each data.teamData as team}
+				<img src={team.drive} alt={team.name} />
+			{/each} -->
 			<Slider arrows autoplay duration="3000" class="gap-10">
 				{#each data.teamData as team}
 					<Team
 						id={team.id}
 						name={team.name}
 						position={team.position}
-						image={team.image}
+						image={team.src}
 						class="md:min-w-1/4 relative flex w-full shrink-0 snap-center snap-normal items-center justify-center gap-4 overflow-hidden md:w-1/4"
 					/>
 				{/each}
@@ -170,7 +173,7 @@
 						<Mask
 							ratio="2/1"
 							mask="/masks/rounded.svg"
-							src={about.image}
+							src={about.src}
 							alt={about.title}
 							class="size-96 rounded-lg shadow-lg"
 						/>
@@ -201,12 +204,12 @@
 				>
 					<EmailIcon class="text-accent text-xl lg:text-5xl" />{meta.companyEmails[0].email}
 				</Button>
-				<Button class="relative z-100 text-left text-base lg:text-2xl" glass>
-					<MapIcon
-						href="https://maps.app.goo.gl/qKAxhCoYnzYBpVqv9"
-						target="_blank"
-						class="text-accent text-xl lg:text-5xl"
-					/>{meta.companyAddress}
+				<Button
+					href="https://maps.app.goo.gl/qKAxhCoYnzYBpVqv9"
+					class="relative z-100 text-left text-base lg:text-2xl"
+					glass
+				>
+					<MapIcon class="text-accent text-xl lg:text-5xl" />{meta.companyAddress}
 				</Button>
 			</div>
 			<Map address={meta.companyAddress} zoom={14} class="absolute inset-0 -z-10 translate-y-1/8 scale-[2] grayscale" />
@@ -228,7 +231,6 @@
 			<Button
 				class="my-20"
 				href="https://search.google.com/local/writereview?placeid=ChIJx-FnYE_LPoYRubNNIk7tdn0"
-				target="_blank"
 				neutral
 				xl>Write us a review?</Button
 			>
@@ -252,10 +254,10 @@
 <Container class="">
 	<Title>Ready for an appointment?</Title>
 	<div class="flex flex-col justify-center gap-4 lg:flex-row">
-		<Button class="max-w-full w-full flex-1" href="tel:{meta.companyPhone}" xl neutral
+		<Button class="w-full max-w-full flex-1" href="tel:{meta.companyPhone}" xl neutral
 			><PhoneIcon class="text-4xl" />Call {formatPhoneNumber(meta.companyPhone)}</Button
 		>
-		<Button class="max-w-full w-full flex-1" href="https://maps.app.goo.gl/qKAxhCoYnzYBpVqv9" target="_blank" neutral outline xl
+		<Button class="w-full max-w-full flex-1" href="https://maps.app.goo.gl/qKAxhCoYnzYBpVqv9" neutral outline xl
 			><MapIcon class="text-4xl" />Get Directions</Button
 		>
 	</div>

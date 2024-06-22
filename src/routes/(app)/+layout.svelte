@@ -3,10 +3,6 @@
 	import { Template, Divider, Header, Logo, Button, Nav, ThemeDark, Footer, Social, Copyright } from '@oneezy/ui';
 
 	import { formatPhoneNumber } from '@oneezy/ui/utils/utils.js';
-	import SolarPhoneBold from '~icons/solar/phone-bold';
-	import SolarMapPointBold from '~icons/solar/map-point-bold';
-	import CiMenuAlt02 from '~icons/ci/menu-alt-02';
-	import SolarHamburgerMenuLinear from '~icons/solar/hamburger-menu-linear';
 
 	let { data, children, ...props } = $props();
 
@@ -47,12 +43,48 @@
 	<meta property="og:locale" content="EN_US" />
 </svelte:head>
 
-{#snippet phoneIcon()}
+{#snippet IconMap(size)}
 	<svg
 		class="flex items-center justify-center"
 		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
+		width={size ? size : 32}
+		height={size ? size : 32}
+		viewBox="0 0 24 24"
+	>
+		<path
+			fill="currentColor"
+			fill-rule="evenodd"
+			d="M12 2c-4.418 0-8 4.003-8 8.5c0 4.462 2.553 9.312 6.537 11.174a3.45 3.45 0 0 0 2.926 0C17.447 19.812 20 14.962 20 10.5C20 6.003 16.418 2 12 2m0 10a2 2 0 1 0 0-4a2 2 0 0 0 0 4"
+			clip-rule="evenodd"
+		/>
+	</svg>
+{/snippet}
+
+{#snippet IconMenu(size)}
+	<svg
+		class="flex items-center justify-center"
+		xmlns="http://www.w3.org/2000/svg"
+		width={size ? size : 32}
+		height={size ? size : 32}
+		viewBox="0 0 24 24"
+	>
+		<path
+			fill="none"
+			stroke="currentColor"
+			stroke-linecap="round"
+			stroke-linejoin="round"
+			stroke-width="2"
+			d="M11 17h8M5 12h14m-8-5h8"
+		/>
+	</svg>
+{/snippet}
+
+{#snippet IconPhone(size)}
+	<svg
+		class="flex items-center justify-center"
+		xmlns="http://www.w3.org/2000/svg"
+		width={size ? size : 32}
+		height={size ? size : 32}
 		viewBox="0 0 24 24"
 		><path
 			fill="currentColor"
@@ -75,12 +107,12 @@
 					{/if}
 				</div>
 			{/snippet}
-			{#snippet center()}<Nav row {links} class="hidden md:flex" />{/snippet}
+			{#snippet center()}<Nav {links} row class="hidden md:flex" />{/snippet}
 			{#snippet right({ isHeaderActive })}
 				{#if !isHeaderActive}
 					<!-- mobile menu -->
 					<Button icon class="flex text-white md:hidden">
-						<SolarHamburgerMenuLinear class="text-3xl" />
+						{@render IconMenu(56)}
 					</Button>
 
 					<!-- phone button icon -->
@@ -89,27 +121,27 @@
 						class="text-primary-50-50 hidden bg-transparent md:flex lg:hidden"
 						icon
 					>
-						<SolarPhoneBold class="text-3xl" />
+						{@render IconPhone()}
 					</Button>
 
 					<!-- phone button full -->
 					<Button href="tel:{meta.companyPhone}" class="text-primary-50-50 hidden hidden bg-transparent lg:flex">
-						<SolarPhoneBold class="text-3xl" />
+						{@render IconPhone()}
 						{formatPhoneNumber(meta.companyPhone)}
 					</Button>
 				{:else}
 					<!-- mobile -->
 					<Button icon class="flex md:hidden">
-						<SolarHamburgerMenuLinear class="text-3xl" />
+						{@render IconMenu(56)}
 					</Button>
 
 					<!-- phone button icon -->
 					<Button href="tel:{meta.companyPhone}" class="hidden md:flex lg:hidden" icon ghost>
-						<SolarPhoneBold class="text-3xl" />
+						{@render IconPhone()}
 					</Button>
 					<!-- phone button full -->
 					<Button href="tel:{meta.companyPhone}" class="hidden lg:flex" neutral>
-						<SolarPhoneBold class="text-3xl" />
+						{@render IconPhone()}
 						{formatPhoneNumber(meta.companyPhone)}
 					</Button>
 				{/if}

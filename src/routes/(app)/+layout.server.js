@@ -4,8 +4,8 @@ import { getProxyUrl } from "@oneezy/ui/utils/utils.js";
 export async function load({ fetch }) {
   // URLs to fetch data from created by Google Sheets
   const urls = [
-    "https://opensheet.justinoneill2007.workers.dev/1UX84JSmYUXdmRUsmNxHptNh-1Y-gwG02aLzh9kvlYjE/general",
-    "https://opensheet.justinoneill2007.workers.dev/1UX84JSmYUXdmRUsmNxHptNh-1Y-gwG02aLzh9kvlYjE/pages",
+    "https://opensheet.justinoneill2007.workers.dev/1vDOEXosCyxLCToLHmpUIuKTjr0yuTS3cwPAa8sQ00aQ/general",
+    "https://opensheet.justinoneill2007.workers.dev/1vDOEXosCyxLCToLHmpUIuKTjr0yuTS3cwPAa8sQ00aQ/pages",
   ];
 
   try {

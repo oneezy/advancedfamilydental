@@ -186,33 +186,33 @@
 		{#if page.pageSlug === 'services'}
 			<div class="grid auto-rows-fr grid-cols-1 gap-10 p-4 pb-20 md:grid-cols-3">
 				{#each data.servicesData as service}
-					<Card title={service.title} description={service.description} classCard="bg-neutral-50-950" />
+					<Card title={service.title} description={service.description} classCard="bg-neutral-50-950 pointer-events-none" />
 				{/each}
 			</div>
 		{/if}
 
 		<!-- Contact -->
 		{#if page.pageSlug === 'contact'}
-			<div class="flex h-[80vh] flex-col gap-4 pt-44">
-				<Button href="tel:{meta.companyPhone}" class="relative z-100 text-left text-base lg:text-2xl" glass>
-					<PhoneIcon class="text-accent text-xl lg:text-5xl" />{formatPhoneNumber(meta.companyPhone)}
+			<div class="flex h-[80vh] flex-col gap-4 ">
+				<Button href="tel:{meta.companyPhone}" class="relative z-100 text-left text-base lg:text-xl" glass>
+					<PhoneIcon class="text-accent text-xl lg:text-3xl" />{formatPhoneNumber(meta.companyPhone)}
 				</Button>
 				<Button
 					href="mailto:{meta.companyEmails[0].email}"
-					class="relative z-100 text-left text-base lg:text-2xl"
+					class="relative z-100 text-left text-base lg:text-xl"
 					glass
 				>
-					<EmailIcon class="text-accent text-xl lg:text-5xl" />{meta.companyEmails[0].email}
+					<EmailIcon class="text-accent text-xl lg:text-3xl" />{meta.companyEmails[0].email}
 				</Button>
 				<Button
 					href="https://maps.app.goo.gl/qKAxhCoYnzYBpVqv9"
-					class="relative z-100 text-left text-base lg:text-2xl"
+					class="relative z-100 text-left text-base lg:text-xl"
 					glass
 				>
-					<MapIcon class="text-accent text-xl lg:text-5xl" />{meta.companyAddress}
+					<MapIcon class="text-accent text-xl lg:text-3xl" />{meta.companyAddress}
 				</Button>
 			</div>
-			<Map address={meta.companyAddress} zoom={14} class="absolute inset-0 -z-10 translate-y-1/8 scale-[2] grayscale" />
+			<Map address={meta.companyAddress} zoom={14} class="absolute inset-0 -z-10 scale-[2]" />
 		{/if}
 
 		<!-- Testimonials -->
@@ -226,7 +226,7 @@
 				</Stat>
 			</div>
 			<div class="columns-1 gap-4 lg:columns-2 xl:columns-3">
-				<Review reviews={data.reviewData} class="mx-2 my-8 break-inside-avoid" />
+				<Review reviews={data.reviewData} class="mx-2 my-8 break-inside-avoid pointer-events-none" />
 			</div>
 			<Button
 				class="my-20"

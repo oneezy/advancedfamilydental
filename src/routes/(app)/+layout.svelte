@@ -3,6 +3,7 @@
 	import { Template, Divider, Header, Logo, Button, Nav, ThemeDark, Footer, Social, Copyright } from '@oneezy/ui';
 
 	import { formatPhoneNumber } from '@oneezy/ui/utils/utils.js';
+	import BxHandicap from '~icons/bx/handicap'
 
 	let { data, children, ...props } = $props();
 
@@ -160,9 +161,7 @@
 			class="bg-accent text-primary-50-50 p-4"
 			containerClass="grid md:grid-cols-2 grid-flow-dense items-center justify-center gap-4"
 		>
-			<div
-				class="flex flex-col items-center justify-center text-left md:col-span-1 md:col-start-1 md:flex-row md:justify-start"
-			>
+			<div class="flex flex-col items-center justify-center text-left md:col-span-1 md:col-start-1 md:flex-row md:justify-start">
 				<Logo
 					{href}
 					src="logos/icon-black.svg"
@@ -170,7 +169,13 @@
 				/>
 				<Copyright class="text-center md:text-nowrap">{meta.companyName}</Copyright>
 			</div>
-			<Social classContainer="md:-col-end-1 md:ml-auto" socials={meta.socialLinks} />
+			<div class="flex items-center justify-center md:-col-end-1 md:ml-auto gap-4">
+				<div class="flex gap-2 pr-4 items-center border-r-2 border-black/20">
+					<BxHandicap class="size-10 text-4xl"/>
+					<strong>ACCESSIBLE</strong>
+				</div>
+				<Social socials={meta.socialLinks} />
+			</div>
 		</Footer>
 	{/snippet}
 </Template>

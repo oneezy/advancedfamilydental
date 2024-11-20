@@ -126,7 +126,7 @@
 					</Button>
 
 					<!-- phone button full -->
-					<Button href="tel:{meta.companyPhone}" class="text-primary-50-50 hidden hidden bg-transparent lg:flex">
+					<Button href="tel:{meta.companyPhone}" class="text-primary-50-50 hidden bg-transparent lg:flex">
 						{@render IconPhone()}
 						{formatPhoneNumber(meta.companyPhone)}
 					</Button>

@@ -1,4 +1,5 @@
-import { getProxyUrl } from "@oneezy/ui/utils/utils.js";
+// import { getProxyUrl } from "@oneezy/ui/utils/utils.js";
+import { getProxyUrl } from "$lib/utils/utils.js";
 
 /** @type {import('./$types').LayoutServerLoad} */
 export async function load({ fetch }) {

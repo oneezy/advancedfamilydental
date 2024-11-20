@@ -150,7 +150,7 @@
 			{#each data.teamData as team}
 				<img src={team.drive} alt={team.name} />
 			{/each} -->
-			<Slider arrows autoplay duration="3000" class="gap-10">
+			<Slider arrows autoplay duration="4500" class="gap-10">
 				{#each data.teamData as team}
 					<Team
 						id={team.id}
@@ -164,7 +164,7 @@
 
 			<!-- About -->
 			{#each data.aboutData as about}
-				<div class="flex flex-col flex-col-reverse items-center md:flex-row md:gap-10 md:even:flex-row-reverse">
+				<div class="flex flex-col-reverse items-center md:flex-row md:gap-10 md:even:flex-row-reverse">
 					<Content text>
 						<h2>{about.title}</h2>
 						<p>{about.description}</p>

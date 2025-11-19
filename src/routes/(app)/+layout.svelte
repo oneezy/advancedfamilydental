@@ -1,22 +1,37 @@
 <script>
-	import { page } from '$app/stores';
-	import { Template, Divider, Header, Logo, Button, Nav, ThemeDark, Footer, Social, Copyright } from '@oneezy/ui';
+	import { page } from "$app/stores";
+	import {
+		Template,
+		Divider,
+		Header,
+		Logo,
+		Button,
+		Nav,
+		ThemeDark,
+		Footer,
+		Social,
+		Copyright,
+	} from "@oneezy/ui";
 
-	import { formatPhoneNumber } from '@oneezy/ui/utils/utils.js';
-	import BxHandicap from '~icons/bx/handicap'
+	import { formatPhoneNumber } from "@oneezy/ui/utils/utils.js";
+	import BxHandicap from "~icons/bx/handicap";
 
 	let { data, children, ...props } = $props();
 
 	let links = [
-		{ label: 'home', href: '#home' },
-		{ label: 'about', href: '#about' },
-		{ label: 'services', href: '#services' },
-		{ label: 'testimonials', href: '#testimonials' },
-		{ label: 'contact', href: '#contact' },
-		{ label: 'FAQ', href: '#faq' }
+		{ label: "home", href: "#home" },
+		{ label: "about", href: "#about" },
+		{ label: "services", href: "#services" },
+		{ label: "testimonials", href: "#testimonials" },
+		{ label: "contact", href: "#contact" },
+		{ label: "FAQ", href: "#faq" },
+		{
+			label: "Plans",
+			href: "https://app.dentalhq.com/accounts/signup/my-dentist/9628",
+		},
 	];
 
-	let href = '/';
+	let href = "/";
 	let meta = data.metaData[0];
 </script>
 
@@ -94,6 +109,20 @@
 	>
 {/snippet}
 
+{#snippet IconMember(size)}
+	<svg
+		xmlns="http://www.w3.org/2000/svg"
+		class="flex items-center justify-center"
+		width={size ? size : 32}
+		height={size ? size : 32}
+		viewBox="0 0 24 24"
+		><path
+			fill="currentColor"
+			d="M12 12q-1.65 0-2.825-1.175T8 8t1.175-2.825T12 4t2.825 1.175T16 8t-1.175 2.825T12 12m-8 6v-.8q0-.85.438-1.562T5.6 14.55q1.55-.775 3.15-1.162T12 13t3.25.388t3.15 1.162q.725.375 1.163 1.088T20 17.2v.8q0 .825-.587 1.413T18 20H6q-.825 0-1.412-.587T4 18"
+		/></svg
+	>
+{/snippet}
+
 <Template>
 	{#snippet header()}
 		<Header class="p-0" containerClass="relative">
@@ -104,7 +133,11 @@
 						<Logo {href} src="logo.svg" class="hidden lg:flex" />
 					{:else}
 						<Logo {href} src="icon.svg" class="flex lg:hidden" />
-						<Logo {href} src="/logos/logo-black-horizontal-noborder.svg" class="hidden lg:flex" />
+						<Logo
+							{href}
+							src="/logos/logo-black-horizontal-noborder.svg"
+							class="hidden lg:flex"
+						/>
 					{/if}
 				</div>
 			{/snippet}
@@ -126,25 +159,44 @@
 					</Button>
 
 					<!-- phone button full -->
-					<Button href="tel:{meta.companyPhone}" class="text-primary-50-50 hidden bg-transparent lg:flex">
+					<Button
+						href="tel:{meta.companyPhone}"
+						class="text-primary-50-50 hidden bg-transparent lg:flex"
+					>
 						{@render IconPhone()}
 						{formatPhoneNumber(meta.companyPhone)}
 					</Button>
 				{:else}
-					<!-- mobile -->
-					<Button icon class="flex md:hidden">
-						{@render IconMenu(56)}
-					</Button>
+					<!-- MOBILE 
+					:::::::::::::::::::::::::::::::::::::::::::::: -->
+					<div class="flex items-center gap-2 lg:hidden">
+						<!-- phone -->
+						<Button
+							href="tel:{meta.companyPhone}"
+							class="text-primary-950-50 bg-transparent flex"
+							icon
+						>
+							{@render IconPhone()}
+						</Button>
+						<!-- menu -->
+						<Button
+							icon
+							class="flex lg:hidden"
+							href="https://app.dentalhq.com/accounts/signup/my-dentist/9628"
+						>
+							{@render IconMember()}
+						</Button>
+					</div>
 
-					<!-- phone button icon -->
-					<Button href="tel:{meta.companyPhone}" class="hidden md:flex lg:hidden" icon ghost>
-						{@render IconPhone()}
-					</Button>
-					<!-- phone button full -->
-					<Button href="tel:{meta.companyPhone}" class="hidden lg:flex" neutral>
-						{@render IconPhone()}
-						{formatPhoneNumber(meta.companyPhone)}
-					</Button>
+					<!-- DESKTOP 
+					:::::::::::::::::::::::::::::::::::::::::::::: -->
+					<div class="hidden lg:items-center lg:gap-4 lg:flex">
+						<!-- phone -->
+						<Button href="tel:{meta.companyPhone}" class="flex" neutral>
+							{@render IconPhone()}
+							{formatPhoneNumber(meta.companyPhone)}
+						</Button>
+					</div>
 				{/if}
 			{/snippet}
 		</Header>
@@ -161,17 +213,23 @@
 			class="bg-accent text-primary-50-50 p-4"
 			containerClass="grid md:grid-cols-2 grid-flow-dense items-center justify-center gap-4"
 		>
-			<div class="flex flex-col items-center justify-center text-left md:col-span-1 md:col-start-1 md:flex-row md:justify-start">
+			<div
+				class="flex flex-col items-center justify-center text-left md:col-span-1 md:col-start-1 md:flex-row md:justify-start"
+			>
 				<Logo
 					{href}
 					src="logos/icon-black.svg"
 					class="mr-2 flex size-36 items-center justify-center opacity-60 md:size-24"
 				/>
-				<Copyright class="text-center md:text-nowrap">{meta.companyName}</Copyright>
+				<Copyright class="text-center md:text-nowrap"
+					>{meta.companyName}</Copyright
+				>
 			</div>
-			<div class="flex items-center justify-center md:-col-end-1 md:ml-auto gap-4">
+			<div
+				class="flex items-center justify-center md:-col-end-1 md:ml-auto gap-4"
+			>
 				<div class="flex gap-2 pr-4 items-center border-r-2 border-black/20">
-					<BxHandicap class="size-10 text-4xl"/>
+					<BxHandicap class="size-10 text-4xl" />
 					<strong>ACCESSIBLE</strong>
 				</div>
 				<Social socials={meta.socialLinks} />
@@ -179,3 +237,14 @@
 		</Footer>
 	{/snippet}
 </Template>
+
+<style>
+	:global {
+		.navigation {
+			gap: 1rem;
+		}
+		.navigation a {
+			padding: 0 !important;
+		}
+	}
+</style>

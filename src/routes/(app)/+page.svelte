@@ -1,6 +1,6 @@
 <script>
 	import {
-		Hero,
+		// Hero,
 		Page,
 		Section,
 		Container,
@@ -17,9 +17,11 @@
 		Stat,
 		Slider,
 		Title,
-		Team
-	} from '@oneezy/ui';
-	import { formatPhoneNumber } from '@oneezy/ui/utils/utils.js';
+		Team,
+	} from "@oneezy/ui";
+	import { formatPhoneNumber } from "@oneezy/ui/utils/utils.js";
+
+	import Hero from "$lib/components/Hero.svelte";
 
 	let {
 		data,
@@ -35,27 +37,27 @@
 		...props
 	} = $props();
 
-	let classes = 'card grid items-center justify-start flex-1';
+	let classes = "card grid items-center justify-start flex-1";
 
-	let dividerFill = 'fill-neutral-50-800';
-	let dividerWidth = '150%';
-	let dividerHeight = 'calc(14vw + 1px)';
+	let dividerFill = "fill-neutral-50-800";
+	let dividerWidth = "150%";
+	let dividerHeight = "calc(14vw + 1px)";
 
 	// Extract the "Home" page data and the rest of the pages
 	let meta = data.metaData[0];
-	let homePage = data.pageData.find((page) => page.pageSlug === 'home');
-	let otherPages = data.pageData.filter((page) => page.pageSlug !== 'home');
+	let homePage = data.pageData.find((page) => page.pageSlug === "home");
+	let otherPages = data.pageData.filter((page) => page.pageSlug !== "home");
 
-	import PhoneIcon from '~icons/solar/phone-bold';
-	import MapIcon from '~icons/solar/map-point-bold';
-	import StarIcon from '~icons/material-symbols/kid-star';
-	import ReviewIcon from '~icons/material-symbols/android-messages';
-	import DoctorIcon from '~icons/fa6-solid/user-doctor';
-	import OfficeIcon from '~icons/ph/building-office-fill';
-	import SmileIcon from '~icons/streamline/chat-bubble-oval-smiley-2-solid';
-	import EmailIcon from '~icons/ic/round-mail';
+	import PhoneIcon from "~icons/solar/phone-bold";
+	import MapIcon from "~icons/solar/map-point-bold";
+	import StarIcon from "~icons/material-symbols/kid-star";
+	import ReviewIcon from "~icons/material-symbols/android-messages";
+	import DoctorIcon from "~icons/fa6-solid/user-doctor";
+	import OfficeIcon from "~icons/ph/building-office-fill";
+	import SmileIcon from "~icons/streamline/chat-bubble-oval-smiley-2-solid";
+	import EmailIcon from "~icons/ic/round-mail";
 
-	let classIcons = 'text-secondary text-6xl p-2';
+	let classIcons = "text-secondary text-6xl p-2";
 </script>
 
 {#snippet toothIcon(classes)}
@@ -89,8 +91,8 @@
 		title={homePage.pageTitle}
 		tagline={homePage.pageTagline}
 		company={meta.companyName}
-		button1="Schedule Appointment"
-		button1Link="tel:{meta.companyPhone}"
+		button1="Become Member"
+		button1Link="https://app.dentalhq.com/accounts/signup/my-dentist/9628"
 		button2="Get Directions"
 		button2Link="#contact"
 		src="/images/office.jpg"
@@ -113,13 +115,13 @@
 			description={quicklinks.description}
 			href={quicklinks.href}
 		>
-			{#if quicklinks.icon === 'doctor'}
+			{#if quicklinks.icon === "doctor"}
 				<DoctorIcon class={classIcons} />
-			{:else if quicklinks.icon === 'office'}
+			{:else if quicklinks.icon === "office"}
 				<OfficeIcon class={classIcons} />
-			{:else if quicklinks.icon === 'services'}
-				{@render toothIcon(' size-14')}
-			{:else if quicklinks.icon === 'appointment'}
+			{:else if quicklinks.icon === "services"}
+				{@render toothIcon(" size-14")}
+			{:else if quicklinks.icon === "appointment"}
 				<SmileIcon class={classIcons} />
 			{/if}
 		</Card>
@@ -129,22 +131,22 @@
 <!-- Pages -->
 {#each otherPages as page}
 	<Page
-		class="min-h-[80vh] overflow-hidden {page.pageSlug === 'contact' ? '' : ''} {page.pageSlug === 'services'
-			? 'bg-neutral-200-700'
-			: ''}"
-		classContainer={page.pageSlug === 'contact' ? '' : ''}
+		class="min-h-[80vh] overflow-hidden {page.pageSlug === 'contact'
+			? ''
+			: ''} {page.pageSlug === 'services' ? 'bg-neutral-200-700' : ''}"
+		classContainer={page.pageSlug === "contact" ? "" : ""}
 		id={page.pageSlug}
 		title={page.pageTitle}
 		tagline={page.pageTagline}
-		titleOutside={page.pageSlug === 'contact' ? true : false}
-		dividerTop={page.pageSlug === 'contact' || 'services' ? true : false}
-		dividerStuck={page.pageSlug === 'contact' ? true : false}
+		titleOutside={page.pageSlug === "contact" ? true : false}
+		dividerTop={page.pageSlug === "contact" || "services" ? true : false}
+		dividerStuck={page.pageSlug === "contact" ? true : false}
 		dividerBottom
 		{dividerWidth}
 		{dividerHeight}
 		{dividerFill}
 	>
-		{#if page.pageSlug === 'about'}
+		{#if page.pageSlug === "about"}
 			<!-- Team -->
 			<!-- 			 
 			{#each data.teamData as team}
@@ -164,7 +166,9 @@
 
 			<!-- About -->
 			{#each data.aboutData as about}
-				<div class="flex flex-col-reverse items-center md:flex-row md:gap-10 md:even:flex-row-reverse">
+				<div
+					class="flex flex-col-reverse items-center md:flex-row md:gap-10 md:even:flex-row-reverse"
+				>
 					<Content text>
 						<h2>{about.title}</h2>
 						<p>{about.description}</p>
@@ -183,40 +187,59 @@
 		{/if}
 
 		<!-- Services -->
-		{#if page.pageSlug === 'services'}
-			<div class="grid auto-rows-fr grid-cols-1 gap-10 p-4 pb-20 md:grid-cols-3">
+		{#if page.pageSlug === "services"}
+			<div
+				class="grid auto-rows-fr grid-cols-1 gap-10 p-4 pb-20 md:grid-cols-3"
+			>
 				{#each data.servicesData as service}
-					<Card title={service.title} description={service.description} classCard="bg-neutral-50-950 pointer-events-none" />
+					<Card
+						title={service.title}
+						description={service.description}
+						classCard="bg-neutral-50-950 pointer-events-none"
+					/>
 				{/each}
 			</div>
 		{/if}
 
 		<!-- Contact -->
-		{#if page.pageSlug === 'contact'}
-			<div class="flex h-[80vh] flex-col gap-4 ">
-				<Button href="tel:{meta.companyPhone}" class="relative z-100 text-left text-base lg:text-xl" glass>
-					<PhoneIcon class="text-accent text-xl lg:text-3xl" />{formatPhoneNumber(meta.companyPhone)}
+		{#if page.pageSlug === "contact"}
+			<div class="flex h-[80vh] flex-col gap-4">
+				<Button
+					href="tel:{meta.companyPhone}"
+					class="relative z-100 text-left text-base lg:text-xl"
+					glass
+				>
+					<PhoneIcon
+						class="text-accent text-xl lg:text-3xl"
+					/>{formatPhoneNumber(meta.companyPhone)}
 				</Button>
 				<Button
 					href="mailto:{meta.companyEmails[0].email}"
 					class="relative z-100 text-left text-base lg:text-xl"
 					glass
 				>
-					<EmailIcon class="text-accent text-xl lg:text-3xl" />{meta.companyEmails[0].email}
+					<EmailIcon class="text-accent text-xl lg:text-3xl" />{meta
+						.companyEmails[0].email}
 				</Button>
 				<Button
 					href="https://maps.app.goo.gl/qKAxhCoYnzYBpVqv9"
 					class="relative z-100 text-left text-base lg:text-xl"
 					glass
 				>
-					<MapIcon class="text-accent text-xl lg:text-3xl" />{meta.companyAddress}
+					<MapIcon
+						class="text-accent text-xl lg:text-3xl"
+					/>{meta.companyAddress}
 				</Button>
 			</div>
-			<Map address={meta.companyAddress} zoom={14} class="absolute inset-0 -z-10 scale-[2]" />
+			<Map
+				address={meta.companyAddress}
+				zoom={14}
+				class="absolute inset-0 -z-10 scale-[2]"
+			/>
 		{/if}
 
 		<!-- Testimonials -->
-		{#if page.pageSlug === 'testimonials'}
+		{#if page.pageSlug === "testimonials"}
 			<div class="mb-20 flex gap-20">
 				<Stat title="Rating" value="4.8">
 					<StarIcon class="text-accent" />
@@ -226,7 +249,10 @@
 				</Stat>
 			</div>
 			<div class="columns-1 gap-4 lg:columns-2 xl:columns-3">
-				<Review reviews={data.reviewData} class="mx-2 my-8 break-inside-avoid pointer-events-none" />
+				<Review
+					reviews={data.reviewData}
+					class="mx-2 my-8 break-inside-avoid pointer-events-none"
+				/>
 			</div>
 			<Button
 				class="my-20"
@@ -237,10 +263,10 @@
 		{/if}
 
 		<!-- FAQ -->
-		{#if page.pageSlug === 'faq'}
+		{#if page.pageSlug === "faq"}
 			<Accordion>
 				{#each data.faqData as faq, index}
-					<AccordionItem id={'accordion-item-' + index}>
+					<AccordionItem id={"accordion-item-" + index}>
 						{#snippet control()}{faq.question}{/snippet}
 						{#snippet panel()}{faq.answer}{/snippet}
 					</AccordionItem>
@@ -254,11 +280,21 @@
 <Container class="">
 	<Title>Ready for an appointment?</Title>
 	<div class="flex flex-col justify-center gap-4 lg:flex-row">
-		<Button class="w-full max-w-full flex-1" href="tel:{meta.companyPhone}" xl neutral
-			><PhoneIcon class="text-4xl" />Call {formatPhoneNumber(meta.companyPhone)}</Button
+		<Button
+			class="w-full max-w-full flex-1"
+			href="tel:{meta.companyPhone}"
+			xl
+			neutral
+			><PhoneIcon class="text-4xl" />Call {formatPhoneNumber(
+				meta.companyPhone
+			)}</Button
 		>
-		<Button class="w-full max-w-full flex-1" href="https://maps.app.goo.gl/qKAxhCoYnzYBpVqv9" neutral outline xl
-			><MapIcon class="text-4xl" />Get Directions</Button
+		<Button
+			class="w-full max-w-full flex-1"
+			href="https://maps.app.goo.gl/qKAxhCoYnzYBpVqv9"
+			neutral
+			outline
+			xl><MapIcon class="text-4xl" />Get Directions</Button
 		>
 	</div>
 </Container>

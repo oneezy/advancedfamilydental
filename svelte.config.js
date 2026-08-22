@@ -1,8 +1,13 @@
-/** @type {import('svelte').Config} */
-import svelteConfig from '@oneezy/ui/svelte.config.js'
+/** @type {import("svelte").Config} */
+import adapter from "@sveltejs/adapter-vercel";
+import svelteConfig from "@oneezy/ui/svelte.config.js";
 
 const config = {
-	...svelteConfig,
-}
+  ...svelteConfig,
+  kit: {
+    ...svelteConfig.kit,
+    adapter: adapter(),
+  },
+};
 
-export default config
+export default config;

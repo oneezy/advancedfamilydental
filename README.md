@@ -4,7 +4,7 @@ The Advanced Family Dental website, built with SvelteKit.
 
 ## Requirements
 
-- Node.js `^20.19.0` or `>=22.12.0`
+- Node.js `24.x` LTS. The repository pins the major used for local checks and Vercel builds.
 - pnpm `11.20.0`
 
 This repository must use pnpm because the workspace applies a compatibility patch to `@oneezy/ui` during installation.

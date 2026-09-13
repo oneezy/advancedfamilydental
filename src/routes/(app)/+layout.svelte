@@ -123,7 +123,7 @@
   >
 {/snippet}
 
-<Template>
+<Template class="[&>main]:min-w-0 [&>footer]:min-w-0">
   {#snippet header()}
     <Header class="p-0" containerClass="relative">
       {#snippet left({ isHeaderActive })}

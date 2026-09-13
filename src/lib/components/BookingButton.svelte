@@ -1,12 +1,13 @@
 <script>
   import { Button } from "@oneezy/ui";
+  import { BOOKING_URL } from "$lib/booking.js";
 
   let { class: className = "" } = $props();
 </script>
 
 <Button
   class={className}
-  href="https://schedule.jarvisanalytics.com/frame?eoid=15470&elid=15000000000661"
+  href={BOOKING_URL}
   target="_blank"
   rel="noopener noreferrer"
   aria-label="BOOK ONLINE (opens in a new tab)"

@@ -1,0 +1,13 @@
+diff --git a/dist/components/atoms/Link/Link.svelte b/dist/components/atoms/Link/Link.svelte
+index 5109532..6222730 100644
+--- a/dist/components/atoms/Link/Link.svelte
++++ b/dist/components/atoms/Link/Link.svelte
+@@ -26 +25,0 @@
+-		aria-current={// $page.url.pathname === href && // $page.url.pathname !== '/' ? true : undefined}
+diff --git a/dist/components/molecules/Review/Review.svelte b/dist/components/molecules/Review/Review.svelte
+index 64b4920..5646b5e 100644
+--- a/dist/components/molecules/Review/Review.svelte
++++ b/dist/components/molecules/Review/Review.svelte
+@@ -43,2 +42,0 @@
+-	// Log the values
+-	console.log('Review component props:', { name, src, image, rating, description, reviews });

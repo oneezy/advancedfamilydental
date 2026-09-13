@@ -1,0 +1,7 @@
+packages:
+  - "."
+
+allowBuilds:
+  esbuild: true
+patchedDependencies:
+  "@oneezy/ui@2.0.62": patches/@oneezy__ui@2.0.62.patch

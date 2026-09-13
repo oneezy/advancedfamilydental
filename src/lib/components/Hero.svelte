@@ -1,0 +1,107 @@
+<script>
+	import BookingButton from "./BookingButton.svelte";
+	import {
+		Section,
+		Container,
+		Image,
+		Effect,
+		Title,
+		Button,
+		Divider,
+		Logo,
+	} from "@oneezy/ui";
+
+	let {
+		logo = true,
+		logoEffect = true,
+		logoSrc = "https://oneezy.com/logo.svg",
+		logoSmall = "https://oneezy.com/logo.svg",
+		logoLarge = "https://oneezy.com/logo.svg",
+		title = "Title",
+		tagline = "Your awesome tagline goes here",
+		company = "Company Name",
+		button2 = "Button 2",
+		button2Link = "#",
+		src = "https://picsum.photos/1920/1080",
+		divider = true,
+		dividerFill = "fill-neutral-50-800",
+		dividerWidth = "150%",
+		dividerHeight = "240px",
+		dividerStuck = false,
+		heroGradient = "white, transparent, transparent, transparent, var(--color-secondary-500)",
+		children,
+		...props
+	} = $props();
+</script>
+
+{#snippet IconMap(size)}
+	<svg
+		class="flex items-center justify-center"
+		xmlns="http://www.w3.org/2000/svg"
+		width={size ? size : 32}
+		height={size ? size : 32}
+		viewBox="0 0 24 24"
+	>
+		<path
+			fill="currentColor"
+			fill-rule="evenodd"
+			d="M12 2c-4.418 0-8 4.003-8 8.5c0 4.462 2.553 9.312 6.537 11.174a3.45 3.45 0 0 0 2.926 0C17.447 19.812 20 14.962 20 10.5C20 6.003 16.418 2 12 2m0 10a2 2 0 1 0 0-4a2 2 0 0 0 0 4"
+			clip-rule="evenodd"
+		/>
+	</svg>
+{/snippet}
+
+{#snippet IconPhone(size)}
+	<svg
+		class="flex items-center justify-center"
+		xmlns="http://www.w3.org/2000/svg"
+		width={size ? size : 32}
+		height={size ? size : 32}
+		viewBox="0 0 24 24"
+		><path
+			fill="currentColor"
+			d="m16.556 12.906l-.455.453s-1.083 1.076-4.038-1.862s-1.872-4.014-1.872-4.014l.286-.286c.707-.702.774-1.83.157-2.654L9.374 2.86C8.61 1.84 7.135 1.705 6.26 2.575l-1.57 1.56c-.433.432-.723.99-.688 1.61c.09 1.587.808 5 4.812 8.982c4.247 4.222 8.232 4.39 9.861 4.238c.516-.048.964-.31 1.325-.67l1.42-1.412c.96-.953.69-2.588-.538-3.255l-1.91-1.039c-.806-.437-1.787-.309-2.417.317"
+		/></svg
+	>
+{/snippet}
+
+<!-- children
+:::::::::::::::::::::::::::::::: -->
+<Section
+	{...props}
+	class="relative grid grid-rows-[1fr_auto] overflow-hidden {props.class}"
+>
+	<Image bg cover {src}>
+		<Effect gradient={heroGradient} linear="180deg" />
+	</Image>
+
+	<Container class="flex flex-col items-center justify-center gap-20 pt-20">
+		<Title title={company} class="sr-only text-center text-white" />
+		{#if logo}
+			<Logo effect={logoEffect} class="flex w-full lg:hidden" src={logoSmall} />
+			<!-- Match the live desktop logo, independent of the UI container width. -->
+			<Logo effect={logoEffect} class="hidden w-full max-w-[49rem] lg:flex" src={logoLarge} />
+			<!-- <Title {tagline} class="text-center text-white" /> -->
+		{:else}
+			<Title {title} {tagline} class="text-center text-white" />
+		{/if}
+
+		<div class="flex flex-col justify-center gap-4 lg:flex-row">
+			<BookingButton class="w-full flex-1 lg:min-w-96" />
+			<Button class="w-full flex-1 lg:min-w-96" href={button2Link} neutral xl>
+				{@render IconMap(42)}
+				{button2}
+			</Button>
+		</div>
+	</Container>
+
+	{#if divider}
+		<Divider
+			class="mb-[-1px]"
+			fill={dividerFill}
+			width={dividerWidth}
+			height={dividerHeight}
+			flip={true}
+		/>
+	{/if}
+</Section>

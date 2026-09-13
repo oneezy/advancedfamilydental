@@ -18,6 +18,17 @@ const expectedLinks = [
 ];
 
 export async function checkMobileHeader(page) {
+  // A previous section link may still be smooth-scrolling. Measure a settled
+  // page, so navigation animation is not mistaken for menu-induced movement.
+  let previous;
+  let stable = 0;
+  for (let attempt = 0; attempt < 40 && stable < 3; attempt++) {
+    const current = await page.evaluate(() => scrollY);
+    stable = current === previous ? stable + 1 : 0;
+    previous = current;
+    if (stable < 3) await page.waitForTimeout(50);
+  }
+  check(stable >= 3, "Section scrolling must settle before measuring layout");
   const trigger = page.getByRole("button", { name: "Open menu", exact: true });
   const close = page.getByRole("button", { name: "Close menu", exact: true });
   const nav = page.getByRole("navigation", {

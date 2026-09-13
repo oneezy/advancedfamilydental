@@ -25,7 +25,7 @@ branch and PR #6. Review the header-only change against commit f67fd5e.
 
 `scripts/header-browser-checks.mjs` exports `checkMobileHeader(page)` and
 `checkDesktopHeader(page)`. Pass a Playwright-compatible page that implements
-`evaluate` and `getByRole`. With the connected in-app browser, use its
+`evaluate`, `getByRole`, and `waitForTimeout`. With the connected in-app browser, use its
 `page.playwright` interface. These browser checks are separate from `pnpm test`.
 They do not book appointments or submit patient information.
 

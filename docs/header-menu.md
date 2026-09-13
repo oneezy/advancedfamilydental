@@ -23,6 +23,31 @@ branch and PR #6. Review the header-only change against commit f67fd5e.
 
 ## Browser regression checks
 
+## September 12 regression follow-up
+
+Justin reported oversized desktop hero branding, lost scroll reveal, and missing
+red active-link indicators. This follow-up supersedes mobile visibility above.
+Compare the full branch to main, and the repair alone to dc07d7a.
+
+- Below 1024px, hide the header at the page top. Slide it down after 80px of
+  scrolling, matching the former header threshold. Hide it again on return to top.
+- Apply scroll-triggered reveal only on mobile. Desktop navigation stays visible.
+- Match the live desktop hero logo size, measured as 784 CSS pixels at a 1440px
+  viewport with a 16px root font. The preview had expanded it to 1120px.
+- Restore a red active-section bar for Home, About, Services, Testimonials,
+  Contact, and FAQ. Update on link navigation and ordinary scrolling in either
+  direction. External Plans and booking links must not become current sections.
+- Keep the approved modal controls, focus handling, resize behavior, reduced
+  motion, phone and booking destinations. Do not change content or dependencies.
+
+`scripts/header-regression-checks.mjs` checks reveal visibility, desktop logo size,
+and exactly one current section with a rendered red bar. Run the mobile reveal
+check at the top, after scrolling, and after returning to top. Open the menu only
+after revealing the header when running `checkMobileHeader` below. Check every
+desktop section via links, then scroll up and down without changing the hash.
+
+## Existing menu regression checks
+
 `scripts/header-browser-checks.mjs` exports `checkMobileHeader(page)` and
 `checkDesktopHeader(page)`. Pass a Playwright-compatible page that implements
 `evaluate`, `getByRole`, and `waitForTimeout`. With the connected in-app browser, use its

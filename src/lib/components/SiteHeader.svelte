@@ -9,6 +9,8 @@
   let desktopHome;
   let open = $state(false);
   let ready = $state(false);
+  let scrolled = $state(false);
+  let activeHref = $state("#home");
   let restoreScroll;
 
   function openMenu() {
@@ -78,12 +80,56 @@
 
   onMount(() => {
     ready = true;
+    let frame;
+    function updateScrollState() {
+      frame = undefined;
+      // A modal temporarily fixes the body at scrollY=0. Preserve the page's
+      // section and header state until the original scroll position is restored.
+      if (menu.open) return;
+      scrolled = window.scrollY > 80;
+      const sections = links
+        .filter((link) => link.href.startsWith("#"))
+        .map((link) => ({
+          href: link.href,
+          element: document.getElementById(link.href.slice(1)),
+        }))
+        .filter((section) => section.element);
+      const activationLine = Math.max(112, window.innerHeight / 3);
+      let current = sections[0]?.href;
+      for (const section of sections) {
+        if (section.element.getBoundingClientRect().top <= activationLine)
+          current = section.href;
+      }
+      if (
+        window.scrollY + window.innerHeight >=
+        document.documentElement.scrollHeight - 2
+      ) {
+        current = sections.at(-1)?.href;
+      }
+      activeHref = current;
+    }
+    function scheduleScrollUpdate() {
+      if (frame === undefined) frame = requestAnimationFrame(updateScrollState);
+    }
+    updateScrollState();
+    window.addEventListener("scroll", scheduleScrollUpdate, { passive: true });
+    window.addEventListener("resize", scheduleScrollUpdate);
+    window.addEventListener("hashchange", scheduleScrollUpdate);
+    menu.addEventListener("close", scheduleScrollUpdate);
+    const layoutObserver = new ResizeObserver(scheduleScrollUpdate);
+    layoutObserver.observe(document.body);
     const desktop = window.matchMedia("(min-width: 1024px)");
     const onViewportChange = () => {
       if (desktop.matches && menu.open) closeMenu();
     };
     desktop.addEventListener("change", onViewportChange);
     return () => {
+      cancelAnimationFrame(frame);
+      window.removeEventListener("scroll", scheduleScrollUpdate);
+      window.removeEventListener("resize", scheduleScrollUpdate);
+      window.removeEventListener("hashchange", scheduleScrollUpdate);
+      menu.removeEventListener("close", scheduleScrollUpdate);
+      layoutObserver.disconnect();
       desktop.removeEventListener("change", onViewportChange);
       restoreScroll?.();
     };
@@ -134,7 +180,9 @@
 
 {#snippet navLink(link, mobile = false)}
   <a
+    class="section-link"
     href={link.href}
+    aria-current={link.href === activeHref ? "location" : undefined}
     target={link.href.startsWith("https:") ? "_blank" : undefined}
     rel={link.href.startsWith("https:") ? "noopener noreferrer" : undefined}
     onclick={() => {
@@ -156,7 +204,7 @@
   >
 {/snippet}
 
-<div class="site-header">
+<div class="site-header" class:revealed={scrolled || open}>
   <div class="mobile-bar header-panel">
     <button
       bind:this={trigger}
@@ -263,6 +311,34 @@
     position: fixed;
     z-index: 30;
     inset: 1rem 1rem auto;
+    visibility: hidden;
+    opacity: 0;
+    transform: translateY(calc(-100% - 1rem));
+    transition:
+      transform 350ms ease,
+      opacity 350ms ease,
+      visibility 350ms;
+  }
+  .site-header.revealed {
+    visibility: visible;
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .section-link {
+    position: relative;
+  }
+  .section-link[aria-current="location"]::after {
+    content: "";
+    position: absolute;
+    bottom: -10px;
+    inset-inline: 0;
+    height: 4px;
+    border-radius: 9999px;
+    background: #ef1621;
+  }
+  .menu-panel .section-link[aria-current="location"]::after {
+    bottom: 3px;
+    inset-inline: 1rem;
   }
   .header-panel,
   .menu-panel {
@@ -402,6 +478,9 @@
     }
   }
   @media (prefers-reduced-motion: reduce) {
+    .site-header {
+      transition: none;
+    }
     dialog[open] {
       animation: none;
     }
@@ -409,6 +488,10 @@
   @media (min-width: 1024px) {
     .site-header {
       inset: 1.25rem 1rem auto;
+      visibility: visible;
+      opacity: 1;
+      transform: none;
+      transition: none;
     }
     .mobile-bar {
       display: none;

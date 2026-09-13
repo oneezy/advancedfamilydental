@@ -79,7 +79,8 @@
 		<Title title={company} class="sr-only text-center text-white" />
 		{#if logo}
 			<Logo effect={logoEffect} class="flex w-full lg:hidden" src={logoSmall} />
-			<Logo effect={logoEffect} class="hidden w-full lg:flex" src={logoLarge} />
+			<!-- Match the live desktop logo, independent of the UI container width. -->
+			<Logo effect={logoEffect} class="hidden w-full max-w-[49rem] lg:flex" src={logoLarge} />
 			<!-- <Title {tagline} class="text-center text-white" /> -->
 		{:else}
 			<Title {title} {tagline} class="text-center text-white" />

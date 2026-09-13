@@ -1,4 +1,5 @@
 <script>
+	import BookingButton from "./BookingButton.svelte";
 	import {
 		Section,
 		Container,
@@ -19,8 +20,6 @@
 		title = "Title",
 		tagline = "Your awesome tagline goes here",
 		company = "Company Name",
-		button1 = "Button 1",
-		button1Link = "#",
 		button2 = "Button 2",
 		button2Link = "#",
 		src = "https://picsum.photos/1920/1080",
@@ -66,19 +65,6 @@
 	>
 {/snippet}
 
-{#snippet IconMember(size)}
-	<svg
-		xmlns="http://www.w3.org/2000/svg"
-		class="flex items-center justify-center"
-		width={size ? size : 32}
-		height={size ? size : 32}
-		viewBox="0 0 24 24"
-		><path
-			fill="currentColor"
-			d="M12 12q-1.65 0-2.825-1.175T8 8t1.175-2.825T12 4t2.825 1.175T16 8t-1.175 2.825T12 12m-8 6v-.8q0-.85.438-1.562T5.6 14.55q1.55-.775 3.15-1.162T12 13t3.25.388t3.15 1.162q.725.375 1.163 1.088T20 17.2v.8q0 .825-.587 1.413T18 20H6q-.825 0-1.412-.587T4 18"
-		/></svg
-	>
-{/snippet}
 <!-- children
 :::::::::::::::::::::::::::::::: -->
 <Section
@@ -93,17 +79,15 @@
 		<Title title={company} class="sr-only text-center text-white" />
 		{#if logo}
 			<Logo effect={logoEffect} class="flex w-full lg:hidden" src={logoSmall} />
-			<Logo effect={logoEffect} class="hidden w-full lg:flex" src={logoLarge} />
+			<!-- Match the live desktop logo, independent of the UI container width. -->
+			<Logo effect={logoEffect} class="hidden w-full max-w-[49rem] lg:flex" src={logoLarge} />
 			<!-- <Title {tagline} class="text-center text-white" /> -->
 		{:else}
 			<Title {title} {tagline} class="text-center text-white" />
 		{/if}
 
 		<div class="flex flex-col justify-center gap-4 lg:flex-row">
-			<Button class="w-full flex-1 lg:min-w-96" href={button1Link} xl secondary>
-				{@render IconMember(42)}
-				{button1}
-			</Button>
+			<BookingButton class="w-full flex-1 lg:min-w-96" />
 			<Button class="w-full flex-1 lg:min-w-96" href={button2Link} neutral xl>
 				{@render IconMap(42)}
 				{button2}

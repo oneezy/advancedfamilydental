@@ -22,6 +22,7 @@
   import { formatPhoneNumber } from "@oneezy/ui/utils/utils.js";
 
   import Hero from "$lib/components/Hero.svelte";
+  import BookingButton from "$lib/components/BookingButton.svelte";
 
   let {
     data,
@@ -95,8 +96,6 @@
     title={homePage.pageTitle}
     tagline={homePage.pageTagline}
     company={meta.companyName}
-    button1="Become Member"
-    button1Link="https://app.dentalhq.com/accounts/signup/my-dentist/9628"
     button2="Get Directions"
     button2Link="#contact"
     src="/images/office.jpg"
@@ -282,19 +281,18 @@
 
 <!-- CTA -->
 <Container class="">
-  <Title>Ready for an appointment?</Title>
-  <div class="flex flex-col justify-center gap-4 lg:flex-row">
-    <Button
-      class="w-full max-w-full flex-1"
-      href="tel:{meta.companyPhone}"
-      xl
-      neutral
+  <Title class="[&_h2]:text-4xl sm:[&_h2]:text-5xl md:[&_h2]:text-6xl">
+    Ready for an appointment?
+  </Title>
+  <div class="mx-auto flex w-full max-w-96 flex-col gap-4">
+    <BookingButton class="w-full max-w-full" />
+    <Button class="w-full max-w-full" href="tel:{meta.companyPhone}" xl neutral
       ><PhoneIcon class="text-4xl" />Call {formatPhoneNumber(
         meta.companyPhone,
       )}</Button
     >
     <Button
-      class="w-full max-w-full flex-1"
+      class="w-full max-w-full"
       href="https://maps.app.goo.gl/qKAxhCoYnzYBpVqv9"
       neutral
       outline

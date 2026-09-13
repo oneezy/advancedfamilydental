@@ -21,8 +21,6 @@ branch and PR #6. Review the header-only change against commit f67fd5e.
 - Test and review, push the existing branch, verify a fresh hosted preview, and
   return its phone-accessible URL. Do not merge or publish production.
 
-## Browser regression checks
-
 ## September 12 regression follow-up
 
 Justin reported oversized desktop hero branding, lost scroll reveal, and missing

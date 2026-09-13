@@ -1,22 +1,28 @@
 // Browser checks, separate from pnpm test. Run through a Playwright-compatible
 // page, including the connected in-app browser's tab.playwright interface.
 export async function checkHeaderReveal(page, visible) {
-  const state = await page.evaluate(() => {
-    const header = document.querySelector(".site-header");
-    const style = getComputedStyle(header);
-    return {
-      width: innerWidth,
-      scroll: scrollY,
-      visible:
-        style.visibility === "visible" &&
-        header.getBoundingClientRect().bottom > 0,
-    };
-  });
-  if (state.visible !== visible)
-    throw new Error(
-      `Header reveal: ${JSON.stringify(state)}, expected visible=${visible}`,
-    );
-  return state;
+  let state;
+  // Wait for the real 350ms reveal transition, including delayed visibility.
+  for (let attempt = 0; attempt < 20; attempt++) {
+    state = await page.evaluate(() => {
+      const header = document.querySelector(".site-header");
+      const style = getComputedStyle(header);
+      return {
+        width: innerWidth,
+        scroll: scrollY,
+        hidden: style.visibility === "hidden",
+        visible:
+          style.visibility === "visible" &&
+          style.opacity === "1" &&
+          header.getBoundingClientRect().top >= 0,
+      };
+    });
+    if (visible ? state.visible : state.hidden) return state;
+    await page.waitForTimeout(50);
+  }
+  throw new Error(
+    `Header reveal: ${JSON.stringify(state)}, expected visible=${visible}`,
+  );
 }
 
 export async function checkHeroLogo(page) {

@@ -12,6 +12,24 @@
   let scrolled = $state(false);
   let activeHref = $state("#home");
   let restoreScroll;
+  let pointerStartedOutside = false;
+
+  function isOutsideMenu(event) {
+    if (event.target !== menu) return false;
+    const rect = menu.getBoundingClientRect();
+    return (
+      event.clientX < rect.left ||
+      event.clientX > rect.right ||
+      event.clientY < rect.top ||
+      event.clientY > rect.bottom
+    );
+  }
+
+  function backdropClicked(event) {
+    // Require both ends outside, so a drag from the menu is not a dismissal.
+    if (pointerStartedOutside && isOutsideMenu(event)) closeMenu();
+    pointerStartedOutside = false;
+  }
 
   function openMenu() {
     if (menu.open) return;
@@ -268,6 +286,13 @@
   aria-label="Navigation menu"
   onclose={menuClosed}
   onkeydown={cycleMenuFocus}
+  onpointerdown={(event) => {
+    pointerStartedOutside = isOutsideMenu(event);
+  }}
+  onpointercancel={() => {
+    pointerStartedOutside = false;
+  }}
+  onclick={backdropClicked}
 >
   <div class="menu-panel">
     <div class="mobile-bar">

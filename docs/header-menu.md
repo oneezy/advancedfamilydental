@@ -11,6 +11,9 @@ branch and PR #6. Review the header-only change against commit f67fd5e.
   underlying page. Include every existing navigation link, with BOOK ONLINE last.
 - Provide an X close control, Escape handling, expanded-state announcement,
   initial focus and contained keyboard traversal, and focus restoration.
+- Tapping the backdrop outside the mobile menu also closes it, restores the
+  scroll position and trigger focus, and does not activate underlying links.
+  Tapping inside padding or dragging from inside to outside keeps it open.
 - Close on link selection and on entering the desktop breakpoint. Restore
   scrolling and keep the close control accessible on short screens.
 - Honor reduced motion. Keep the logo centered when the menu itself scrolls.
@@ -51,6 +54,10 @@ desktop section via links, then scroll up and down without changing the hash.
 `evaluate`, `getByRole`, and `waitForTimeout`. With the connected in-app browser, use its
 `page.playwright` interface. These browser checks are separate from `pnpm test`.
 They do not book appointments or submit patient information.
+
+`checkOutsideDismissal(page, clickPoint)` verifies inside padding, backdrop
+dismissal, restored focus/scroll, and no underlying hash navigation. The
+`clickPoint` adapter must send a real pointer click at CSS viewport coordinates.
 
 Set the viewport before each run and verify actual `innerWidth`. Use mobile
 widths 320, 390, and 768, and desktop widths 1024, 1280, and 1440. If browser zoom

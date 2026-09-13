@@ -172,3 +172,50 @@ export async function checkDesktopHeader(page) {
   check(fit, "Desktop controls fit without horizontal overflow");
   return { viewport: width, desktop: "PASS" };
 }
+
+// clickPoint sends a real browser pointer click at CSS viewport coordinates.
+// Start with the mobile header revealed and the menu closed.
+export async function checkOutsideDismissal(page, clickPoint) {
+  const trigger = page.getByRole("button", { name: "Open menu", exact: true });
+  const before = await page.evaluate(() => ({
+    scroll: scrollY,
+    hash: location.hash,
+  }));
+  await trigger.click();
+  const points = await page.evaluate(() => {
+    const rect = document.querySelector("dialog").getBoundingClientRect();
+    return {
+      inside: { x: rect.left + rect.width / 2, y: rect.bottom - 6 },
+      outside: { x: Math.max(1, rect.left / 2), y: rect.top + rect.height / 2 },
+    };
+  });
+  await clickPoint(points.inside);
+  check(
+    await page.getByRole("dialog", { name: "Navigation menu" }).isVisible(),
+    "Inside padding must not dismiss the menu",
+  );
+  await clickPoint(points.outside);
+  check(
+    !(await page.getByRole("dialog", { name: "Navigation menu" }).isVisible()),
+    "Clicking the backdrop must close the menu",
+  );
+  const after = await page.evaluate(() => ({
+    scroll: scrollY,
+    hash: location.hash,
+    focus: document.activeElement.getAttribute("aria-label"),
+    locked: document.body.style.position === "fixed",
+  }));
+  check(
+    !after.locked && Math.abs(after.scroll - before.scroll) < 1,
+    "Backdrop dismissal restores scroll without a jump",
+  );
+  check(
+    after.focus === "Open menu",
+    "Backdrop dismissal restores trigger focus",
+  );
+  check(
+    after.hash === before.hash,
+    "Backdrop clicks must not activate page links underneath",
+  );
+  return { outsideDismissal: "PASS" };
+}

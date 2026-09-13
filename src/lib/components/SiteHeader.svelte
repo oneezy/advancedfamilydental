@@ -252,7 +252,7 @@
     {@render mobilePhone()}
   </div>
 
-  <div class="desktop-bar header-panel">
+  <div class="desktop-bar preset-glass">
     <a
       bind:this={desktopHome}
       class="desktop-logo"
@@ -420,10 +420,6 @@
     outline: 3px solid #005b59;
     outline-offset: 3px;
   }
-  a:hover,
-  button:hover {
-    background-color: #0000000d;
-  }
   .book-online {
     display: flex;
     align-items: center;
@@ -435,9 +431,6 @@
     color: #071917;
     font-weight: 700;
     white-space: nowrap;
-  }
-  .book-online:hover {
-    background: #00b7a9;
   }
   dialog {
     position: fixed;
@@ -513,10 +506,6 @@
   @media (min-width: 1024px) {
     .site-header {
       inset: 1.25rem 1rem auto;
-      visibility: visible;
-      opacity: 1;
-      transform: none;
-      transition: none;
     }
     .mobile-bar {
       display: none;
@@ -530,8 +519,9 @@
       gap: 1rem;
       max-width: 1152px;
       margin-inline: auto;
-      padding: 0.5rem 1rem;
+      padding: 0 1rem;
       min-height: 72px;
+      border-radius: 2rem;
     }
     .desktop-logo {
       flex-shrink: 0;
@@ -549,18 +539,26 @@
     }
     .desktop-bar nav {
       display: flex;
-      align-items: center;
+      align-self: stretch;
+      align-items: stretch;
       justify-content: flex-end;
       gap: 1rem;
       flex: 1;
     }
     .desktop-bar nav a {
+      display: flex;
+      align-items: center;
       text-transform: capitalize;
       font-weight: 500;
       white-space: nowrap;
     }
     .desktop-bar nav .book-online {
+      align-self: center;
       font-weight: 700;
+    }
+    .desktop-bar .section-link[aria-current="location"]::after {
+      /* Full-height links end at the inner edge of the 2px glass border. */
+      bottom: -2px;
     }
   }
   @media (min-width: 1280px) {

@@ -102,6 +102,11 @@ export async function checkMobileHeader(page) {
     "Tab wraps to Close menu",
   );
   await close.press("Escape");
+  // Native Escape queues the dialog close event after the key dispatch.
+  for (let attempt = 0; attempt < 20; attempt++) {
+    if ((await trigger.getAttribute("aria-expanded")) === "false") break;
+    await page.waitForTimeout(50);
+  }
   check(
     (await trigger.getAttribute("aria-expanded")) === "false",
     "Escape collapses menu",

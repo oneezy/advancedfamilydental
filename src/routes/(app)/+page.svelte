@@ -284,19 +284,15 @@
   <Title class="[&_h2]:text-4xl sm:[&_h2]:text-5xl md:[&_h2]:text-6xl">
     Ready for an appointment?
   </Title>
-  <div class="flex flex-col justify-center gap-4 lg:flex-row">
-    <BookingButton class="w-full max-w-full flex-1" />
-    <Button
-      class="w-full max-w-full flex-1"
-      href="tel:{meta.companyPhone}"
-      xl
-      neutral
+  <div class="mx-auto flex w-full max-w-96 flex-col gap-4">
+    <BookingButton class="w-full max-w-full" />
+    <Button class="w-full max-w-full" href="tel:{meta.companyPhone}" xl neutral
       ><PhoneIcon class="text-4xl" />Call {formatPhoneNumber(
         meta.companyPhone,
       )}</Button
     >
     <Button
-      class="w-full max-w-full flex-1"
+      class="w-full max-w-full"
       href="https://maps.app.goo.gl/qKAxhCoYnzYBpVqv9"
       neutral
       outline

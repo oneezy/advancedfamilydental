@@ -47,7 +47,35 @@ check at the top, after scrolling, and after returning to top. Open the menu onl
 after revealing the header when running `checkMobileHeader` below. Check every
 desktop section via links, then scroll up and down without changing the hash.
 
-## Existing menu regression checks
+## September 13 desktop repair
+
+Justin's approved repair plan supersedes the September 12 desktop-always-visible
+rule above. Compare this repair against preview commit `e61b441`, using main
+`9e53419` as the visual reference.
+
+- Hide the whole header at the top on both desktop and mobile, reveal after
+  80px, and hide again on return to top. Hidden controls cannot receive keyboard
+  focus. Preserve reduced motion and the existing mobile menu behavior.
+- Restore main's `preset-glass` on desktop: translucent background, blur, border,
+  ring and shadow. Keep opaque panel styling confined to mobile panels.
+- Remove introduced header link gray hover backgrounds and the booking hover
+  color override. Preserve focus outlines and hover behavior outside the header.
+- Align the red desktop section indicator with the wrapper's bottom edge using
+  full-height navigation links. Preserve section tracking and mobile indicators.
+- Stack the final appointment buttons vertically at every breakpoint in a
+  centered equal-width stack, capped at 384px with 16px gaps. Hero buttons and
+  logo sizing remain unchanged.
+- Do not edit Sheet/Drive content, assets, permissions, refresh automation,
+  OpenSheet loading, image proxy, content schema, or configured booking/nav values.
+  Roster/photo updates require a separate approved content change.
+
+Run `checkHeaderReveal` at top, after scrolling and after return on both layouts.
+Run `checkDesktopGlass`, `checkIndicatorAlignment`, and `checkHeaderHover` with
+the desktop header revealed; the latter takes a real `movePointer({x, y})`
+adapter. `checkAppointmentStack` checks button geometry at every test width.
+Compare main and preview at matching desktop widths over hero and dark sections.
+
+### Menu regression procedure
 
 `scripts/header-browser-checks.mjs` exports `checkMobileHeader(page)` and
 `checkDesktopHeader(page)`. Pass a Playwright-compatible page that implements

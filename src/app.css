@@ -1,5 +1,6 @@
 @import "tailwindcss";
 @import "@oneezy/ui";
+@source "../node_modules/@oneezy/ui/dist";
 
 /* Add any custom CSS here */
 [data-theme] {

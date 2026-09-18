@@ -50,15 +50,12 @@ function getCache(key) {
 
 // Helper function to convert Google Drive URL to proxy URL
 export function getProxyUrl(urls) {
-  console.log("getProxyUrl called with:", urls); // Debug input
+  if (!urls) return undefined;
 
   const cacheKey = `proxy_${urls}`;
   const cachedUrl = getCache(cacheKey);
 
-  if (cachedUrl) {
-    console.log("Serving from cache:", cachedUrl);
-    return cachedUrl;
-  }
+  if (cachedUrl) return cachedUrl;
 
   try {
     const url = new URL(urls);
@@ -73,7 +70,6 @@ export function getProxyUrl(urls) {
 
     if (fileId) {
       const proxyUrl = `/api/photos/${fileId}`;
-      console.log("Generated proxyUrl:", proxyUrl);
       setCache(cacheKey, proxyUrl, 3600); // Cache for 1 hour
       return proxyUrl;
     } else {

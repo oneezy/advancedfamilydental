@@ -127,7 +127,7 @@ export async function load({ fetch }) {
       metaData: [],
       pageData: [],
       aboutData: [],
-      quicklinksData,
+      quicklinksData: [],
       teamData: [],
       servicesData: [],
       reviewData: [],

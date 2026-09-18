@@ -1,10 +1,10 @@
 <script>
-  import { page } from "$app/stores";
   import SiteHeader from "$lib/components/SiteHeader.svelte";
   import { Template, Logo, Footer, Social, Copyright } from "@oneezy/ui";
 
   import { formatPhoneNumber } from "@oneezy/ui/utils/utils.js";
   import BxHandicap from "~icons/bx/handicap";
+  import { CANONICAL_HOST } from "$lib/canonical-host.js";
 
   let { data, children, ...props } = $props();
 
@@ -23,30 +23,72 @@
 
   let href = "/";
   let meta = $derived(data.metaData[0]);
+
+  // One-page site: every URL (including 404s) canonicalises to "/".
+  const canonicalUrl = `${CANONICAL_HOST}/`;
+  const ogImage = `${CANONICAL_HOST}/images/og.png`;
+
+  // Brand always present in the title; the Sheet still controls the keywords.
+  let title = $derived(
+    meta.seoTitle.includes(meta.companyName)
+      ? meta.seoTitle
+      : `${meta.seoTitle} | ${meta.companyName}`
+  );
+
+  // "7:30 AM–3:30 PM" -> ["07:30", "15:30"]; undefined when closed/unparseable.
+  function parseHours(time) {
+    const m = time.match(/(\d{1,2}):(\d{2})\s*(AM|PM)\s*[–-]\s*(\d{1,2}):(\d{2})\s*(AM|PM)/i);
+    if (!m) return undefined;
+    const to24 = (h, min, ap) => {
+      let hour = Number(h) % 12;
+      if (ap.toUpperCase() === "PM") hour += 12;
+      return `${String(hour).padStart(2, "0")}:${min}`;
+    };
+    return [to24(m[1], m[2], m[3]), to24(m[4], m[5], m[6])];
+  }
+
+  let jsonLd = $derived(
+    JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Dentist",
+      name: meta.companyName,
+      url: canonicalUrl,
+      telephone: `+${meta.companyPhone}`,
+      address: meta.companyAddress,
+      image: ogImage,
+      openingHoursSpecification: meta.companyHours.flatMap(({ day, time }) => {
+        const range = parseHours(time);
+        return range
+          ? [{ "@type": "OpeningHoursSpecification", dayOfWeek: day, opens: range[0], closes: range[1] }]
+          : [];
+      }),
+    }).replace(/</g, "\\u003c") // never let Sheet text close the script tag
+  );
 </script>
 
 <svelte:head>
-  <title>{meta.seoTitle}</title>
+  <title>{title}</title>
+  <link rel="canonical" href={canonicalUrl} />
   <meta name="description" content={meta.seoDescription} />
   <meta name="keywords" content={meta.seoKeywords} />
   <meta name="author" content={meta.companyName} />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:site" content={meta.seoDescription} />
-  <meta name="twitter:title" content={meta.seoTitle} />
+  <meta name="twitter:title" content={title} />
   <meta name="twitter:description" content={meta.seoDescription} />
-  <meta name="twitter:image" content="{$page.url.origin}/images/og.png" />
+  <meta name="twitter:image" content={ogImage} />
   <meta name="twitter:image:alt" content={meta.companyName} />
   <meta name="twitter:creator" content={meta.companyName} />
-  <meta property="og:title" content={meta.seoTitle} />
-  <meta property="og:type" content="article" />
-  <meta property="og:url" content={meta.companyWebsite} />
-  <meta property="og:image" content="{$page.url.origin}/images/og.png" />
+  <meta property="og:title" content={title} />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content={canonicalUrl} />
+  <meta property="og:image" content={ogImage} />
   <meta property="og:image:alt" content={meta.companyName} />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <meta property="og:description" content={meta.seoDescription} />
   <meta property="og:site_name" content={meta.companyName} />
-  <meta property="og:locale" content="EN_US" />
+  <meta property="og:locale" content="en_US" />
+  {@html `<script type="application/ld+json">${jsonLd}</script>`}
 </svelte:head>
 
 <Template class="[&>main]:min-w-0 [&>footer]:min-w-0">

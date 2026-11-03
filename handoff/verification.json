@@ -1,0 +1,49 @@
+{
+  "current": {
+    "zip_bytes": 20265677,
+    "sha256": "9e620e006e8e39ec5bd7e639749153a6941853c7c935c2ad2780edabb2cbc3f5",
+    "files": 70,
+    "local_asset_and_module_references_checked": 68,
+    "external_rendering_assets": [],
+    "team_members": 8,
+    "services": 14,
+    "reviews": 22,
+    "membership_link_preserved": true,
+    "online_booking": true,
+    "external_navigation_links": [
+      "/",
+      "https://app.dentalhq.com/accounts/signup/my-dentist/9628",
+      "https://maps.app.goo.gl/g3gU6jSmCNhe84xo9",
+      "https://maps.app.goo.gl/qKAxhCoYnzYBpVqv9",
+      "https://schedule.jarvisanalytics.com/frame?eoid=15470&elid=15000000000661",
+      "https://search.google.com/local/writereview?placeid=ChIJx-FnYE_LPoYRubNNIk7tdn0",
+      "https://www.facebook.com/ronaldcitranoDDS",
+      "mailto:hi@advancedfamilydental.care",
+      "tel:14098359846"
+    ],
+    "result": "passed"
+  },
+  "previous": {
+    "zip_bytes": 21981805,
+    "sha256": "dd608e170ac968ab4154d9fbefc1d8009dec65ce5a2faafd7aab48278f7b4b88",
+    "files": 72,
+    "local_asset_and_module_references_checked": 71,
+    "external_rendering_assets": [],
+    "team_members": 9,
+    "services": 12,
+    "reviews": 22,
+    "membership_link_preserved": true,
+    "online_booking": false,
+    "external_navigation_links": [
+      "/",
+      "https://app.dentalhq.com/accounts/signup/my-dentist/9628",
+      "https://maps.app.goo.gl/g3gU6jSmCNhe84xo9",
+      "https://maps.app.goo.gl/qKAxhCoYnzYBpVqv9",
+      "https://search.google.com/local/writereview?placeid=ChIJx-FnYE_LPoYRubNNIk7tdn0",
+      "https://www.facebook.com/ronaldcitranoDDS",
+      "mailto:hello@advancedfamilydental.care",
+      "tel:14098359846"
+    ],
+    "result": "passed"
+  }
+}

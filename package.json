@@ -24,6 +24,7 @@
     "@iconify-json/solar": "^1.2.8",
     "@iconify-json/streamline": "^1.2.5",
     "@sveltejs/adapter-auto": "^7.0.1",
+    "@sveltejs/adapter-static": "^3.0.10",
     "@sveltejs/adapter-vercel": "6.3.4",
     "@sveltejs/kit": "^2.70.3",
     "@sveltejs/vite-plugin-svelte": "^7.3.0",

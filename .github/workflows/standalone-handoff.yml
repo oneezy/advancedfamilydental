@@ -1,0 +1,38 @@
+name: Build standalone handoff ZIPs
+on:
+  push:
+    branches: [chore/standalone-handoff]
+    paths:
+      - .github/workflows/standalone-handoff.yml
+      - scripts/build-handoffs.py
+      - scripts/verify-handoffs.py
+      - handoff/assets/**
+      - handoff/snapshots/**
+permissions:
+  contents: read
+jobs:
+  package:
+    if: github.repository == 'oneezy/advancedfamilydental' && github.ref == 'refs/heads/chore/standalone-handoff'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          fetch-depth: 0
+          ref: chore/standalone-handoff
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: '24'
+      - run: npm install --global pnpm@11.25.0
+      - run: pnpm install --frozen-lockfile
+      - run: python3 scripts/build-handoffs.py
+      - run: python3 scripts/verify-handoffs.py
+      - name: Commit verified ZIPs to handoff branch only
+        run: |
+          test "$(git branch --show-current)" = "chore/standalone-handoff"
+          git add handoff/packages/advanced-family-dental-current.zip handoff/packages/advanced-family-dental-previous.zip handoff/verification.json
+          if git diff --cached --quiet; then exit 0; fi
+          git -c user.name="github-actions[bot]" -c user.email="41898282+github-actions[bot]@users.noreply.github.com" commit -m "📦 chore(repo): publish verified standalone ZIPs"
+          git push origin HEAD:refs/heads/chore/standalone-handoff

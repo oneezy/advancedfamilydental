@@ -1,7 +1,7 @@
 {
   "current": {
-    "zip_bytes": 20265678,
-    "sha256": "6702bab702de9df84f0715eabd505abb376975b8c105ee67f93cfe55b1eaa2e1",
+    "zip_bytes": 20265676,
+    "sha256": "9c7e3e736e321ee1923a6211d8971ac8cabb30c1346e90e5aacc3d0e4dd97148",
     "files": 70,
     "local_asset_and_module_references_checked": 68,
     "external_rendering_assets": [],
@@ -24,13 +24,13 @@
     "result": "passed"
   },
   "previous": {
-    "zip_bytes": 21981788,
-    "sha256": "52a36c9e7f45f20e374907f5f17014ec05f9cb08397fc91e0768a290485ddeb9",
+    "zip_bytes": 18921732,
+    "sha256": "0ecd6159f8298e905e7f41db2fe6018cbc111f791561f973f928360ddd750f4d",
     "files": 72,
     "local_asset_and_module_references_checked": 71,
     "external_rendering_assets": [],
     "team_members": 9,
-    "services": 12,
+    "services": 14,
     "reviews": 22,
     "membership_link_preserved": true,
     "online_booking": false,
@@ -41,7 +41,7 @@
       "https://maps.app.goo.gl/qKAxhCoYnzYBpVqv9",
       "https://search.google.com/local/writereview?placeid=ChIJx-FnYE_LPoYRubNNIk7tdn0",
       "https://www.facebook.com/ronaldcitranoDDS",
-      "mailto:hello@advancedfamilydental.care",
+      "mailto:hi@advancedfamilydental.care",
       "tel:14098359846"
     ],
     "result": "passed"

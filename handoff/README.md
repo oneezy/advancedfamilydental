@@ -5,11 +5,13 @@ Both ZIPs contain a complete static website: `index.html`, CSS, JavaScript, imag
 | Package | Source code | Content |
 | --- | --- | --- |
 | `packages/advanced-family-dental-current.zip` | `01401dbc9b01ba8b803f0f8a0f83264a49736fea` (dev, September 18, 2026) | Current Sheet captured November 3, 2026; eight team members, 14 services, online booking |
-| `packages/advanced-family-dental-previous.zip` | `9e534197e26c595286d56d94b4ab967c423dd86e` (November 19, 2025) | Older Sheet, last modified July 1, 2024; nine team members, 12 services, earlier photos, no new online booking |
+| `packages/advanced-family-dental-previous.zip` | `9e534197e26c595286d56d94b4ab967c423dd86e` (November 19, 2025) | Live Sheet revision 203, November 6, 2025 (last listed revision before the 2026 changes); nine team members, 14 services, earlier photos, no new online booking |
 
-## Previous version requires content review
+## Historical baseline
 
-The previous package is a **reconstruction**, not a verified snapshot from immediately before the 2026 changes. Git preserves the templates but not the historical contents of the live Sheet. The available older Sheet predates the 2025 code. Check its roster, contact email (`hello@advancedfamilydental.care`), services, and other business details before sending it as the agreed previous version. The current package retains `hi@advancedfamilydental.care` from the current Sheet.
+The previous package combines the November 19, 2025 code with revision 203 of the actual live Sheet, modified November 6, 2025. This is the last listed Sheet revision before the September 2026 changes. Its historical photo references have been downloaded separately. Both versions preserve the business contact address `hi@advancedfamilydental.care`.
+
+Review the historical roster before deploying it as a current business website. This is a static reconstruction from recorded sources, with the standalone adjustments below.
 
 The earlier membership Plans link is preserved in both packages. Previous team photos are separate from the current photos. Both versions use the pinned current build toolchain and `@oneezy/ui` 2.0.62, so the previous build is not a bit-for-bit restoration of its historical dependencies or appearance.
 
@@ -53,7 +55,7 @@ Both production builds and the existing unit test passed. Browser visual and int
 ## Source provenance
 
 - Current Sheet: `1vDOEXosCyxLCToLHmpUIuKTjr0yuTS3cwPAa8sQ00aQ`
-- Older Sheet: `1UX84JSmYUXdmRUsmNxHptNh-1Y-gwG02aLzh9kvlYjE`
+- Previous content: revision `203` of the same live Sheet, modified `2025-11-06T07:56:58.496Z`. The older 2024 template was superseded by this verified historical revision.
 - `snapshots/` contains the normalized public website content captured from the general and pages tabs.
 - `asset-sources.json` maps included downloaded assets to their source Drive file IDs. It contains no download tokens.
 - This handoff branch is independent of main and dev. No merge or production rollback is part of this handoff.

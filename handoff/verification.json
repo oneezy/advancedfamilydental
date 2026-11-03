@@ -1,7 +1,7 @@
 {
   "current": {
-    "zip_bytes": 20265677,
-    "sha256": "9e620e006e8e39ec5bd7e639749153a6941853c7c935c2ad2780edabb2cbc3f5",
+    "zip_bytes": 20265678,
+    "sha256": "6702bab702de9df84f0715eabd505abb376975b8c105ee67f93cfe55b1eaa2e1",
     "files": 70,
     "local_asset_and_module_references_checked": 68,
     "external_rendering_assets": [],
@@ -24,8 +24,8 @@
     "result": "passed"
   },
   "previous": {
-    "zip_bytes": 21981805,
-    "sha256": "dd608e170ac968ab4154d9fbefc1d8009dec65ce5a2faafd7aab48278f7b4b88",
+    "zip_bytes": 21981788,
+    "sha256": "52a36c9e7f45f20e374907f5f17014ec05f9cb08397fc91e0768a290485ddeb9",
     "files": 72,
     "local_asset_and_module_references_checked": 71,
     "external_rendering_assets": [],

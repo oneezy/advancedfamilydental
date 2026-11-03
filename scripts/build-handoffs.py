@@ -71,7 +71,8 @@ for version, ref in REFS.items():
         '<svg xmlns="http://www.w3.org/2000/svg" width="160" height="160" viewBox="0 0 160 160">'
         '<rect width="160" height="160" fill="#e5e7eb"/><circle cx="80" cy="58" r="28" fill="#9ca3af"/>'
         '<path d="M24 160v-18a56 56 0 0 1 112 0v18" fill="#9ca3af"/></svg>')
-    run('pnpm', 'exec', 'vite', 'build', cwd=work)
+    # Reuse the root's locked toolchain without pnpm reinstalling against an archived lockfile.
+    run('node', str(ROOT / 'node_modules/vite/bin/vite.js'), 'build', cwd=work)
     output = work / 'build'
     # Keep only static files actually referenced by the generated website, plus manifest assets.
     texts = '\n'.join(p.read_text(errors='replace') for p in output.rglob('*')
